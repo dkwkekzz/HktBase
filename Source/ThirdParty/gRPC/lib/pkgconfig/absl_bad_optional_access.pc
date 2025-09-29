@@ -1,0 +1,12 @@
+prefix=C:/WS/DEV/CPP/grpc_install
+exec_prefix=${prefix}
+libdir=C:/WS/DEV/CPP/grpc_install/lib
+includedir=C:/WS/DEV/CPP/grpc_install/include
+
+Name: absl_bad_optional_access
+Description: Abseil bad_optional_access library
+URL: https://abseil.io/
+Version: 20250512
+Requires:
+Libs: -L${libdir}  
+Cflags: -I${includedir}

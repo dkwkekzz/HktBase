@@ -1,0 +1,50 @@
+# Unreal Engine
+.vs/
+.vscode/
+.idea/
+/Binaries/
+/Build/
+/DerivedDataCache/
+/Intermediate/
+/Saved/
+/Script/
+*.VC.db
+*.opensdf
+*.opendb
+*.sdf
+*.sln
+*.suo
+*.svu
+*.suo-db
+*.user
+*.userprefs
+*.xcodeproj
+*.xcworkspace
+
+# Rider
+.idea/
+*.sln.DotSettings.user
+*.uproject.DotSettings.user
+
+# Visual Studio
+.vs/
+/Binaries/Win64/
+/Binaries/Mac/
+/Binaries/Linux/
+*.pdb
+*.obj
+*.exe
+*.dll
+
+# Mac
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --- Custom Exceptions ---
+# Allow essential third-party binaries for gRPC, even if they are ignored globally.
+!/Source/ThirdParty/gRPC/bin/*

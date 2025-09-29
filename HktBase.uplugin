@@ -1,0 +1,28 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "HktBase",
+	"Description": "Hkt base plugin",
+	"Category": "Other",
+	"CreatedBy": "user",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "HktBase",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
+
+
+
+
