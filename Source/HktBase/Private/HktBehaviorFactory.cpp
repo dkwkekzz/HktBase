@@ -1,49 +1,38 @@
 #include "HktBehaviorFactory.h"
-#include "HktBehavior.h"
-#include "HktRpcTraits.h"
+#include "HktPacketTypes.h"
 
-// Á¤Àû TMap ÀÎ½ºÅÏ½º¸¦ °ü¸®ÇÏ´Â ÇÔ¼ö
-TMap<hkt::BehaviorPacket::PacketCase, FHktBehaviorFactory::TCreatorFunc>& FHktBehaviorFactory::GetCreators()
+
+// TMap ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
+TMap<int32, FHktBehaviorFactory::TCreatorFunc>& FHktBehaviorFactory::GetCreators()
 {
-    static TMap<hkt::BehaviorPacket::PacketCase, TCreatorFunc> Creators;
+    static TMap<int32, TCreatorFunc> Creators;
     return Creators;
 }
 
-// ÆÑÅä¸®¿¡ »ı¼º ÇÔ¼ö¸¦ µî·ÏÇÏ´Â ÇÔ¼ö
-void FHktBehaviorFactory::Register(hkt::BehaviorPacket::PacketCase PacketCase, TCreatorFunc Func)
+// ë ˆì§€ìŠ¤íŠ¸ë¦¬ì— ìƒì„± í•¨ìˆ˜ë¥¼ ë“±ë¡í•˜ëŠ” í•¨ìˆ˜
+void FHktBehaviorFactory::Register(int32 BehaviorTypeId, TCreatorFunc Func)
 {
-    // ÀÌ¹Ì µî·ÏµÇÁö ¾Ê¾ÒÀ» °æ¿ì¿¡¸¸ Ãß°¡ÇÕ´Ï´Ù.
-    if (!GetCreators().Contains(PacketCase))
+    // ì´ë¯¸ ë“±ë¡ë˜ì§€ ì•Šì•˜ì„ ê²½ìš°ì—ë§Œ ì¶”ê°€í•©ë‹ˆë‹¤.
+    if (!GetCreators().Contains(BehaviorTypeId))
     {
-        GetCreators().Add(PacketCase, MoveTemp(Func));
+        GetCreators().Add(BehaviorTypeId, MoveTemp(Func));
     }
 }
 
-// µî·ÏµÈ »ı¼º ÇÔ¼ö¸¦ Ã£¾Æ Behavior °´Ã¼¸¦ »ı¼ºÇÏ´Â ¸ŞÀÎ ÇÔ¼ö
+// ë“±ë¡ëœ ìƒì„± í•¨ìˆ˜ë¥¼ ì°¾ì•„ Behavior ê°ì²´ë¥¼ ìƒì„±í•˜ëŠ” ì •ì  í•¨ìˆ˜
 TUniquePtr<IHktBehavior> FHktBehaviorFactory::CreateBehavior(const hkt::BehaviorPacket& Packet)
 {
-    const hkt::BehaviorPacket::PacketCase PacketCase = Packet.packet_case();
+    const int32 BehaviorTypeId = Packet.behavior_type_id();
 
-    // ¸Ê¿¡¼­ ÇØ´ç PacketCase¿¡ ¸Â´Â »ı¼º ÇÔ¼ö¸¦ Ã£½À´Ï´Ù.
-    const TCreatorFunc* Creator = GetCreators().Find(PacketCase);
+    // í•„ìš”í•œ ê²½ìš° í•´ë‹¹ BehaviorTypeIdì— ë§ëŠ” ìƒì„± í•¨ìˆ˜ë¥¼ ì°¾ìŠµë‹ˆë‹¤.
+    const TCreatorFunc* Creator = GetCreators().Find(BehaviorTypeId);
 
     if (Creator && *Creator)
     {
-        // »ı¼º ÇÔ¼ö°¡ Á¸ÀçÇÏ¸é È£ÃâÇÏ¿© °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù.
+        // ìƒì„± í•¨ìˆ˜ê°€ ìœ íš¨í•˜ë©´ í˜¸ì¶œí•˜ì—¬ ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
         return (*Creator)(Packet);
     }
 
-    UE_LOG(LogTemp, Warning, TEXT("Attempted to create behavior from an unregistered or empty packet case: %d"), PacketCase);
+    UE_LOG(LogTemp, Warning, TEXT("Attempted to create behavior from an unregistered or empty behavior type id: %d"), BehaviorTypeId);
     return nullptr;
 }
-
-
-// FBehaviorRegistrarÀÇ Á¤Àû ÀÎ½ºÅÏ½º¸¦ »ı¼ºÇÏ¿© °¢ Behavior Å¸ÀÔÀ» ÀÚµ¿À¸·Î ÆÑÅä¸®¿¡ µî·ÏÇÕ´Ï´Ù.
-// ÀÌ ÄÚµå´Â ÇÁ·Î±×·¥ ½ÃÀÛ ½Ã ÀÚµ¿À¸·Î ½ÇÇàµË´Ï´Ù.
-namespace
-{
-    FBehaviorRegistrar<FMoveBehaviorTrait> MoveRegistrar;
-    FBehaviorRegistrar<FJumpBehaviorTrait> JumpRegistrar;
-    FBehaviorRegistrar<FAttackBehaviorTrait> AttackRegistrar;
-    FBehaviorRegistrar<FDestroyBehaviorTrait> DestroyRegistrar;
-} // namespace

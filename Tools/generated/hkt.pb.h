@@ -54,10 +54,6 @@ extern "C" {
 extern const ::google::protobuf::internal::DescriptorTable descriptor_table_hkt_2eproto;
 }  // extern "C"
 namespace hkt {
-class AttackPacket;
-struct AttackPacketDefaultTypeInternal;
-extern AttackPacketDefaultTypeInternal _AttackPacket_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull AttackPacket_class_data_;
 class BehaviorPacket;
 struct BehaviorPacketDefaultTypeInternal;
 extern BehaviorPacketDefaultTypeInternal _BehaviorPacket_default_instance_;
@@ -66,18 +62,6 @@ class BehaviorRequest;
 struct BehaviorRequestDefaultTypeInternal;
 extern BehaviorRequestDefaultTypeInternal _BehaviorRequest_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull BehaviorRequest_class_data_;
-class DestroyPacket;
-struct DestroyPacketDefaultTypeInternal;
-extern DestroyPacketDefaultTypeInternal _DestroyPacket_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull DestroyPacket_class_data_;
-class JumpPacket;
-struct JumpPacketDefaultTypeInternal;
-extern JumpPacketDefaultTypeInternal _JumpPacket_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull JumpPacket_class_data_;
-class MovePacket;
-struct MovePacketDefaultTypeInternal;
-extern MovePacketDefaultTypeInternal _MovePacket_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull MovePacket_class_data_;
 class SyncRequest;
 struct SyncRequestDefaultTypeInternal;
 extern SyncRequestDefaultTypeInternal _SyncRequest_default_instance_;
@@ -86,10 +70,6 @@ class SyncResponse;
 struct SyncResponseDefaultTypeInternal;
 extern SyncResponseDefaultTypeInternal _SyncResponse_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull SyncResponse_class_data_;
-class Vector;
-struct VectorDefaultTypeInternal;
-extern VectorDefaultTypeInternal _Vector_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull Vector_class_data_;
 }  // namespace hkt
 namespace google {
 namespace protobuf {
@@ -101,221 +81,6 @@ namespace hkt {
 // ===================================================================
 
 
-// -------------------------------------------------------------------
-
-class Vector final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:hkt.Vector) */ {
- public:
-  inline Vector() : Vector(nullptr) {}
-  ~Vector() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Vector* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Vector));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Vector(::google::protobuf::internal::ConstantInitialized);
-
-  inline Vector(const Vector& from) : Vector(nullptr, from) {}
-  inline Vector(Vector&& from) noexcept
-      : Vector(nullptr, ::std::move(from)) {}
-  inline Vector& operator=(const Vector& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Vector& operator=(Vector&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Vector& default_instance() {
-    return *reinterpret_cast<const Vector*>(
-        &_Vector_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 0;
-  friend void swap(Vector& a, Vector& b) { a.Swap(&b); }
-  inline void Swap(Vector* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Vector* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Vector* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Vector>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Vector& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Vector& from) { Vector::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(Vector* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "hkt.Vector"; }
-
- protected:
-  explicit Vector(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  Vector(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Vector& from);
-  Vector(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Vector&& from) noexcept
-      : Vector(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kXFieldNumber = 1,
-    kYFieldNumber = 2,
-    kZFieldNumber = 3,
-  };
-  // float x = 1;
-  void clear_x() ;
-  float x() const;
-  void set_x(float value);
-
-  private:
-  float _internal_x() const;
-  void _internal_set_x(float value);
-
-  public:
-  // float y = 2;
-  void clear_y() ;
-  float y() const;
-  void set_y(float value);
-
-  private:
-  float _internal_y() const;
-  void _internal_set_y(float value);
-
-  public:
-  // float z = 3;
-  void clear_z() ;
-  float z() const;
-  void set_z(float value);
-
-  private:
-  float _internal_z() const;
-  void _internal_set_z(float value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:hkt.Vector)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
-                                   0, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const Vector& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    float x_;
-    float y_;
-    float z_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_hkt_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull Vector_class_data_;
 // -------------------------------------------------------------------
 
 class SyncRequest final : public ::google::protobuf::Message
@@ -373,7 +138,7 @@ class SyncRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const SyncRequest*>(
         &_SyncRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 0;
   friend void swap(SyncRequest& a, SyncRequest& b) { a.Swap(&b); }
   inline void Swap(SyncRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -521,823 +286,6 @@ class SyncRequest final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull SyncRequest_class_data_;
 // -------------------------------------------------------------------
 
-class JumpPacket final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:hkt.JumpPacket) */ {
- public:
-  inline JumpPacket() : JumpPacket(nullptr) {}
-  ~JumpPacket() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(JumpPacket* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(JumpPacket));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR JumpPacket(::google::protobuf::internal::ConstantInitialized);
-
-  inline JumpPacket(const JumpPacket& from) : JumpPacket(nullptr, from) {}
-  inline JumpPacket(JumpPacket&& from) noexcept
-      : JumpPacket(nullptr, ::std::move(from)) {}
-  inline JumpPacket& operator=(const JumpPacket& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline JumpPacket& operator=(JumpPacket&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const JumpPacket& default_instance() {
-    return *reinterpret_cast<const JumpPacket*>(
-        &_JumpPacket_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 2;
-  friend void swap(JumpPacket& a, JumpPacket& b) { a.Swap(&b); }
-  inline void Swap(JumpPacket* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(JumpPacket* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  JumpPacket* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<JumpPacket>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const JumpPacket& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const JumpPacket& from) { JumpPacket::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(JumpPacket* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "hkt.JumpPacket"; }
-
- protected:
-  explicit JumpPacket(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  JumpPacket(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const JumpPacket& from);
-  JumpPacket(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, JumpPacket&& from) noexcept
-      : JumpPacket(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kActorIdFieldNumber = 1,
-    kJumpForceFieldNumber = 2,
-  };
-  // int64 actor_id = 1;
-  void clear_actor_id() ;
-  ::int64_t actor_id() const;
-  void set_actor_id(::int64_t value);
-
-  private:
-  ::int64_t _internal_actor_id() const;
-  void _internal_set_actor_id(::int64_t value);
-
-  public:
-  // float jump_force = 2;
-  void clear_jump_force() ;
-  float jump_force() const;
-  void set_jump_force(float value);
-
-  private:
-  float _internal_jump_force() const;
-  void _internal_set_jump_force(float value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:hkt.JumpPacket)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   0, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const JumpPacket& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::int64_t actor_id_;
-    float jump_force_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_hkt_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull JumpPacket_class_data_;
-// -------------------------------------------------------------------
-
-class DestroyPacket final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:hkt.DestroyPacket) */ {
- public:
-  inline DestroyPacket() : DestroyPacket(nullptr) {}
-  ~DestroyPacket() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(DestroyPacket* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(DestroyPacket));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR DestroyPacket(::google::protobuf::internal::ConstantInitialized);
-
-  inline DestroyPacket(const DestroyPacket& from) : DestroyPacket(nullptr, from) {}
-  inline DestroyPacket(DestroyPacket&& from) noexcept
-      : DestroyPacket(nullptr, ::std::move(from)) {}
-  inline DestroyPacket& operator=(const DestroyPacket& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline DestroyPacket& operator=(DestroyPacket&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const DestroyPacket& default_instance() {
-    return *reinterpret_cast<const DestroyPacket*>(
-        &_DestroyPacket_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 4;
-  friend void swap(DestroyPacket& a, DestroyPacket& b) { a.Swap(&b); }
-  inline void Swap(DestroyPacket* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(DestroyPacket* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  DestroyPacket* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<DestroyPacket>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const DestroyPacket& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const DestroyPacket& from) { DestroyPacket::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(DestroyPacket* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "hkt.DestroyPacket"; }
-
- protected:
-  explicit DestroyPacket(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  DestroyPacket(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const DestroyPacket& from);
-  DestroyPacket(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, DestroyPacket&& from) noexcept
-      : DestroyPacket(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kBehaviorIdFieldNumber = 1,
-  };
-  // int64 behavior_id = 1;
-  void clear_behavior_id() ;
-  ::int64_t behavior_id() const;
-  void set_behavior_id(::int64_t value);
-
-  private:
-  ::int64_t _internal_behavior_id() const;
-  void _internal_set_behavior_id(::int64_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:hkt.DestroyPacket)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1,
-                                   0, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const DestroyPacket& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::int64_t behavior_id_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_hkt_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull DestroyPacket_class_data_;
-// -------------------------------------------------------------------
-
-class AttackPacket final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:hkt.AttackPacket) */ {
- public:
-  inline AttackPacket() : AttackPacket(nullptr) {}
-  ~AttackPacket() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AttackPacket* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(AttackPacket));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AttackPacket(::google::protobuf::internal::ConstantInitialized);
-
-  inline AttackPacket(const AttackPacket& from) : AttackPacket(nullptr, from) {}
-  inline AttackPacket(AttackPacket&& from) noexcept
-      : AttackPacket(nullptr, ::std::move(from)) {}
-  inline AttackPacket& operator=(const AttackPacket& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline AttackPacket& operator=(AttackPacket&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const AttackPacket& default_instance() {
-    return *reinterpret_cast<const AttackPacket*>(
-        &_AttackPacket_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 3;
-  friend void swap(AttackPacket& a, AttackPacket& b) { a.Swap(&b); }
-  inline void Swap(AttackPacket* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(AttackPacket* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  AttackPacket* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<AttackPacket>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AttackPacket& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AttackPacket& from) { AttackPacket::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(AttackPacket* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "hkt.AttackPacket"; }
-
- protected:
-  explicit AttackPacket(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  AttackPacket(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AttackPacket& from);
-  AttackPacket(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AttackPacket&& from) noexcept
-      : AttackPacket(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kAttackerIdFieldNumber = 1,
-    kTargetIdFieldNumber = 2,
-    kDamageFieldNumber = 3,
-  };
-  // int64 attacker_id = 1;
-  void clear_attacker_id() ;
-  ::int64_t attacker_id() const;
-  void set_attacker_id(::int64_t value);
-
-  private:
-  ::int64_t _internal_attacker_id() const;
-  void _internal_set_attacker_id(::int64_t value);
-
-  public:
-  // int64 target_id = 2;
-  void clear_target_id() ;
-  ::int64_t target_id() const;
-  void set_target_id(::int64_t value);
-
-  private:
-  ::int64_t _internal_target_id() const;
-  void _internal_set_target_id(::int64_t value);
-
-  public:
-  // int32 damage = 3;
-  void clear_damage() ;
-  ::int32_t damage() const;
-  void set_damage(::int32_t value);
-
-  private:
-  ::int32_t _internal_damage() const;
-  void _internal_set_damage(::int32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:hkt.AttackPacket)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
-                                   0, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const AttackPacket& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::int64_t attacker_id_;
-    ::int64_t target_id_;
-    ::int32_t damage_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_hkt_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull AttackPacket_class_data_;
-// -------------------------------------------------------------------
-
-class MovePacket final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:hkt.MovePacket) */ {
- public:
-  inline MovePacket() : MovePacket(nullptr) {}
-  ~MovePacket() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(MovePacket* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(MovePacket));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR MovePacket(::google::protobuf::internal::ConstantInitialized);
-
-  inline MovePacket(const MovePacket& from) : MovePacket(nullptr, from) {}
-  inline MovePacket(MovePacket&& from) noexcept
-      : MovePacket(nullptr, ::std::move(from)) {}
-  inline MovePacket& operator=(const MovePacket& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MovePacket& operator=(MovePacket&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MovePacket& default_instance() {
-    return *reinterpret_cast<const MovePacket*>(
-        &_MovePacket_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 1;
-  friend void swap(MovePacket& a, MovePacket& b) { a.Swap(&b); }
-  inline void Swap(MovePacket* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MovePacket* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MovePacket* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<MovePacket>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MovePacket& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const MovePacket& from) { MovePacket::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(MovePacket* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "hkt.MovePacket"; }
-
- protected:
-  explicit MovePacket(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  MovePacket(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const MovePacket& from);
-  MovePacket(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, MovePacket&& from) noexcept
-      : MovePacket(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kNewLocationFieldNumber = 2,
-    kActorIdFieldNumber = 1,
-  };
-  // .hkt.Vector new_location = 2;
-  bool has_new_location() const;
-  void clear_new_location() ;
-  const ::hkt::Vector& new_location() const;
-  [[nodiscard]] ::hkt::Vector* PROTOBUF_NULLABLE release_new_location();
-  ::hkt::Vector* PROTOBUF_NONNULL mutable_new_location();
-  void set_allocated_new_location(::hkt::Vector* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_new_location(::hkt::Vector* PROTOBUF_NULLABLE value);
-  ::hkt::Vector* PROTOBUF_NULLABLE unsafe_arena_release_new_location();
-
-  private:
-  const ::hkt::Vector& _internal_new_location() const;
-  ::hkt::Vector* PROTOBUF_NONNULL _internal_mutable_new_location();
-
-  public:
-  // int64 actor_id = 1;
-  void clear_actor_id() ;
-  ::int64_t actor_id() const;
-  void set_actor_id(::int64_t value);
-
-  private:
-  ::int64_t _internal_actor_id() const;
-  void _internal_set_actor_id(::int64_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:hkt.MovePacket)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   1, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const MovePacket& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::hkt::Vector* PROTOBUF_NULLABLE new_location_;
-    ::int64_t actor_id_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_hkt_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull MovePacket_class_data_;
-// -------------------------------------------------------------------
-
 class BehaviorPacket final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:hkt.BehaviorPacket) */ {
  public:
@@ -1393,14 +341,7 @@ class BehaviorPacket final : public ::google::protobuf::Message
     return *reinterpret_cast<const BehaviorPacket*>(
         &_BehaviorPacket_default_instance_);
   }
-  enum PacketCase {
-    kMovePacket = 3,
-    kJumpPacket = 4,
-    kAttackPacket = 5,
-    kDestroyPacket = 6,
-    PACKET_NOT_SET = 0,
-  };
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(BehaviorPacket& a, BehaviorPacket& b) { a.Swap(&b); }
   inline void Swap(BehaviorPacket* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1488,13 +429,26 @@ class BehaviorPacket final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kPayloadFieldNumber = 4,
     kBehaviorIdFieldNumber = 1,
     kOwnerPlayerIdFieldNumber = 2,
-    kMovePacketFieldNumber = 3,
-    kJumpPacketFieldNumber = 4,
-    kAttackPacketFieldNumber = 5,
-    kDestroyPacketFieldNumber = 6,
+    kBehaviorTypeIdFieldNumber = 3,
   };
+  // bytes payload = 4;
+  void clear_payload() ;
+  const ::std::string& payload() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_payload(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_payload();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_payload();
+  void set_allocated_payload(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_payload() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_payload(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_payload();
+
+  public:
   // int64 behavior_id = 1;
   void clear_behavior_id() ;
   ::int64_t behavior_id() const;
@@ -1515,96 +469,22 @@ class BehaviorPacket final : public ::google::protobuf::Message
   void _internal_set_owner_player_id(::int64_t value);
 
   public:
-  // .hkt.MovePacket move_packet = 3;
-  bool has_move_packet() const;
-  private:
-  bool _internal_has_move_packet() const;
-
-  public:
-  void clear_move_packet() ;
-  const ::hkt::MovePacket& move_packet() const;
-  [[nodiscard]] ::hkt::MovePacket* PROTOBUF_NULLABLE release_move_packet();
-  ::hkt::MovePacket* PROTOBUF_NONNULL mutable_move_packet();
-  void set_allocated_move_packet(::hkt::MovePacket* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_move_packet(::hkt::MovePacket* PROTOBUF_NULLABLE value);
-  ::hkt::MovePacket* PROTOBUF_NULLABLE unsafe_arena_release_move_packet();
+  // int32 behavior_type_id = 3;
+  void clear_behavior_type_id() ;
+  ::int32_t behavior_type_id() const;
+  void set_behavior_type_id(::int32_t value);
 
   private:
-  const ::hkt::MovePacket& _internal_move_packet() const;
-  ::hkt::MovePacket* PROTOBUF_NONNULL _internal_mutable_move_packet();
+  ::int32_t _internal_behavior_type_id() const;
+  void _internal_set_behavior_type_id(::int32_t value);
 
   public:
-  // .hkt.JumpPacket jump_packet = 4;
-  bool has_jump_packet() const;
-  private:
-  bool _internal_has_jump_packet() const;
-
-  public:
-  void clear_jump_packet() ;
-  const ::hkt::JumpPacket& jump_packet() const;
-  [[nodiscard]] ::hkt::JumpPacket* PROTOBUF_NULLABLE release_jump_packet();
-  ::hkt::JumpPacket* PROTOBUF_NONNULL mutable_jump_packet();
-  void set_allocated_jump_packet(::hkt::JumpPacket* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_jump_packet(::hkt::JumpPacket* PROTOBUF_NULLABLE value);
-  ::hkt::JumpPacket* PROTOBUF_NULLABLE unsafe_arena_release_jump_packet();
-
-  private:
-  const ::hkt::JumpPacket& _internal_jump_packet() const;
-  ::hkt::JumpPacket* PROTOBUF_NONNULL _internal_mutable_jump_packet();
-
-  public:
-  // .hkt.AttackPacket attack_packet = 5;
-  bool has_attack_packet() const;
-  private:
-  bool _internal_has_attack_packet() const;
-
-  public:
-  void clear_attack_packet() ;
-  const ::hkt::AttackPacket& attack_packet() const;
-  [[nodiscard]] ::hkt::AttackPacket* PROTOBUF_NULLABLE release_attack_packet();
-  ::hkt::AttackPacket* PROTOBUF_NONNULL mutable_attack_packet();
-  void set_allocated_attack_packet(::hkt::AttackPacket* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_attack_packet(::hkt::AttackPacket* PROTOBUF_NULLABLE value);
-  ::hkt::AttackPacket* PROTOBUF_NULLABLE unsafe_arena_release_attack_packet();
-
-  private:
-  const ::hkt::AttackPacket& _internal_attack_packet() const;
-  ::hkt::AttackPacket* PROTOBUF_NONNULL _internal_mutable_attack_packet();
-
-  public:
-  // .hkt.DestroyPacket destroy_packet = 6;
-  bool has_destroy_packet() const;
-  private:
-  bool _internal_has_destroy_packet() const;
-
-  public:
-  void clear_destroy_packet() ;
-  const ::hkt::DestroyPacket& destroy_packet() const;
-  [[nodiscard]] ::hkt::DestroyPacket* PROTOBUF_NULLABLE release_destroy_packet();
-  ::hkt::DestroyPacket* PROTOBUF_NONNULL mutable_destroy_packet();
-  void set_allocated_destroy_packet(::hkt::DestroyPacket* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_destroy_packet(::hkt::DestroyPacket* PROTOBUF_NULLABLE value);
-  ::hkt::DestroyPacket* PROTOBUF_NULLABLE unsafe_arena_release_destroy_packet();
-
-  private:
-  const ::hkt::DestroyPacket& _internal_destroy_packet() const;
-  ::hkt::DestroyPacket* PROTOBUF_NONNULL _internal_mutable_destroy_packet();
-
-  public:
-  void clear_packet();
-  PacketCase packet_case() const;
   // @@protoc_insertion_point(class_scope:hkt.BehaviorPacket)
  private:
   class _Internal;
-  void set_has_move_packet();
-  void set_has_jump_packet();
-  void set_has_attack_packet();
-  void set_has_destroy_packet();
-  inline bool has_packet() const;
-  inline void clear_has_packet();
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 6,
-                                   4, 0,
+  static const ::google::protobuf::internal::TcParseTable<2, 4,
+                                   0, 0,
                                    2>
       _table_;
 
@@ -1625,17 +505,10 @@ class BehaviorPacket final : public ::google::protobuf::Message
         const BehaviorPacket& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr payload_;
     ::int64_t behavior_id_;
     ::int64_t owner_player_id_;
-    union PacketUnion {
-      constexpr PacketUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::google::protobuf::Message* PROTOBUF_NULLABLE move_packet_;
-      ::google::protobuf::Message* PROTOBUF_NULLABLE jump_packet_;
-      ::google::protobuf::Message* PROTOBUF_NULLABLE attack_packet_;
-      ::google::protobuf::Message* PROTOBUF_NULLABLE destroy_packet_;
-    } packet_;
-    ::uint32_t _oneof_case_[1];
+    ::int32_t behavior_type_id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1700,7 +573,7 @@ class SyncResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const SyncResponse*>(
         &_SyncResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(SyncResponse& a, SyncResponse& b) { a.Swap(&b); }
   inline void Swap(SyncResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1896,7 +769,7 @@ class BehaviorRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const BehaviorRequest*>(
         &_BehaviorRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(BehaviorRequest& a, BehaviorRequest& b) { a.Swap(&b); }
   inline void Swap(BehaviorRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2062,749 +935,6 @@ extern const ::google::protobuf::internal::ClassDataFull BehaviorRequest_class_d
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// Vector
-
-// float x = 1;
-inline void Vector::clear_x() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.x_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline float Vector::x() const {
-  // @@protoc_insertion_point(field_get:hkt.Vector.x)
-  return _internal_x();
-}
-inline void Vector::set_x(float value) {
-  _internal_set_x(value);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  // @@protoc_insertion_point(field_set:hkt.Vector.x)
-}
-inline float Vector::_internal_x() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.x_;
-}
-inline void Vector::_internal_set_x(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.x_ = value;
-}
-
-// float y = 2;
-inline void Vector::clear_y() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.y_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-inline float Vector::y() const {
-  // @@protoc_insertion_point(field_get:hkt.Vector.y)
-  return _internal_y();
-}
-inline void Vector::set_y(float value) {
-  _internal_set_y(value);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:hkt.Vector.y)
-}
-inline float Vector::_internal_y() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.y_;
-}
-inline void Vector::_internal_set_y(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.y_ = value;
-}
-
-// float z = 3;
-inline void Vector::clear_z() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.z_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000004u;
-}
-inline float Vector::z() const {
-  // @@protoc_insertion_point(field_get:hkt.Vector.z)
-  return _internal_z();
-}
-inline void Vector::set_z(float value) {
-  _internal_set_z(value);
-  _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:hkt.Vector.z)
-}
-inline float Vector::_internal_z() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.z_;
-}
-inline void Vector::_internal_set_z(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.z_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// MovePacket
-
-// int64 actor_id = 1;
-inline void MovePacket::clear_actor_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.actor_id_ = ::int64_t{0};
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-inline ::int64_t MovePacket::actor_id() const {
-  // @@protoc_insertion_point(field_get:hkt.MovePacket.actor_id)
-  return _internal_actor_id();
-}
-inline void MovePacket::set_actor_id(::int64_t value) {
-  _internal_set_actor_id(value);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:hkt.MovePacket.actor_id)
-}
-inline ::int64_t MovePacket::_internal_actor_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.actor_id_;
-}
-inline void MovePacket::_internal_set_actor_id(::int64_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.actor_id_ = value;
-}
-
-// .hkt.Vector new_location = 2;
-inline bool MovePacket::has_new_location() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.new_location_ != nullptr);
-  return value;
-}
-inline void MovePacket::clear_new_location() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.new_location_ != nullptr) _impl_.new_location_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const ::hkt::Vector& MovePacket::_internal_new_location() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::hkt::Vector* p = _impl_.new_location_;
-  return p != nullptr ? *p : reinterpret_cast<const ::hkt::Vector&>(::hkt::_Vector_default_instance_);
-}
-inline const ::hkt::Vector& MovePacket::new_location() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:hkt.MovePacket.new_location)
-  return _internal_new_location();
-}
-inline void MovePacket::unsafe_arena_set_allocated_new_location(
-    ::hkt::Vector* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.new_location_);
-  }
-  _impl_.new_location_ = reinterpret_cast<::hkt::Vector*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:hkt.MovePacket.new_location)
-}
-inline ::hkt::Vector* PROTOBUF_NULLABLE MovePacket::release_new_location() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::hkt::Vector* released = _impl_.new_location_;
-  _impl_.new_location_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
-}
-inline ::hkt::Vector* PROTOBUF_NULLABLE MovePacket::unsafe_arena_release_new_location() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:hkt.MovePacket.new_location)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::hkt::Vector* temp = _impl_.new_location_;
-  _impl_.new_location_ = nullptr;
-  return temp;
-}
-inline ::hkt::Vector* PROTOBUF_NONNULL MovePacket::_internal_mutable_new_location() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.new_location_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::hkt::Vector>(GetArena());
-    _impl_.new_location_ = reinterpret_cast<::hkt::Vector*>(p);
-  }
-  return _impl_.new_location_;
-}
-inline ::hkt::Vector* PROTOBUF_NONNULL MovePacket::mutable_new_location()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::hkt::Vector* _msg = _internal_mutable_new_location();
-  // @@protoc_insertion_point(field_mutable:hkt.MovePacket.new_location)
-  return _msg;
-}
-inline void MovePacket::set_allocated_new_location(::hkt::Vector* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.new_location_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = value->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.new_location_ = reinterpret_cast<::hkt::Vector*>(value);
-  // @@protoc_insertion_point(field_set_allocated:hkt.MovePacket.new_location)
-}
-
-// -------------------------------------------------------------------
-
-// JumpPacket
-
-// int64 actor_id = 1;
-inline void JumpPacket::clear_actor_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.actor_id_ = ::int64_t{0};
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline ::int64_t JumpPacket::actor_id() const {
-  // @@protoc_insertion_point(field_get:hkt.JumpPacket.actor_id)
-  return _internal_actor_id();
-}
-inline void JumpPacket::set_actor_id(::int64_t value) {
-  _internal_set_actor_id(value);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  // @@protoc_insertion_point(field_set:hkt.JumpPacket.actor_id)
-}
-inline ::int64_t JumpPacket::_internal_actor_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.actor_id_;
-}
-inline void JumpPacket::_internal_set_actor_id(::int64_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.actor_id_ = value;
-}
-
-// float jump_force = 2;
-inline void JumpPacket::clear_jump_force() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.jump_force_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-inline float JumpPacket::jump_force() const {
-  // @@protoc_insertion_point(field_get:hkt.JumpPacket.jump_force)
-  return _internal_jump_force();
-}
-inline void JumpPacket::set_jump_force(float value) {
-  _internal_set_jump_force(value);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:hkt.JumpPacket.jump_force)
-}
-inline float JumpPacket::_internal_jump_force() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.jump_force_;
-}
-inline void JumpPacket::_internal_set_jump_force(float value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.jump_force_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// AttackPacket
-
-// int64 attacker_id = 1;
-inline void AttackPacket::clear_attacker_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.attacker_id_ = ::int64_t{0};
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline ::int64_t AttackPacket::attacker_id() const {
-  // @@protoc_insertion_point(field_get:hkt.AttackPacket.attacker_id)
-  return _internal_attacker_id();
-}
-inline void AttackPacket::set_attacker_id(::int64_t value) {
-  _internal_set_attacker_id(value);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  // @@protoc_insertion_point(field_set:hkt.AttackPacket.attacker_id)
-}
-inline ::int64_t AttackPacket::_internal_attacker_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.attacker_id_;
-}
-inline void AttackPacket::_internal_set_attacker_id(::int64_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.attacker_id_ = value;
-}
-
-// int64 target_id = 2;
-inline void AttackPacket::clear_target_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.target_id_ = ::int64_t{0};
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-inline ::int64_t AttackPacket::target_id() const {
-  // @@protoc_insertion_point(field_get:hkt.AttackPacket.target_id)
-  return _internal_target_id();
-}
-inline void AttackPacket::set_target_id(::int64_t value) {
-  _internal_set_target_id(value);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:hkt.AttackPacket.target_id)
-}
-inline ::int64_t AttackPacket::_internal_target_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.target_id_;
-}
-inline void AttackPacket::_internal_set_target_id(::int64_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.target_id_ = value;
-}
-
-// int32 damage = 3;
-inline void AttackPacket::clear_damage() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.damage_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000004u;
-}
-inline ::int32_t AttackPacket::damage() const {
-  // @@protoc_insertion_point(field_get:hkt.AttackPacket.damage)
-  return _internal_damage();
-}
-inline void AttackPacket::set_damage(::int32_t value) {
-  _internal_set_damage(value);
-  _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:hkt.AttackPacket.damage)
-}
-inline ::int32_t AttackPacket::_internal_damage() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.damage_;
-}
-inline void AttackPacket::_internal_set_damage(::int32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.damage_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// DestroyPacket
-
-// int64 behavior_id = 1;
-inline void DestroyPacket::clear_behavior_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.behavior_id_ = ::int64_t{0};
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline ::int64_t DestroyPacket::behavior_id() const {
-  // @@protoc_insertion_point(field_get:hkt.DestroyPacket.behavior_id)
-  return _internal_behavior_id();
-}
-inline void DestroyPacket::set_behavior_id(::int64_t value) {
-  _internal_set_behavior_id(value);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  // @@protoc_insertion_point(field_set:hkt.DestroyPacket.behavior_id)
-}
-inline ::int64_t DestroyPacket::_internal_behavior_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.behavior_id_;
-}
-inline void DestroyPacket::_internal_set_behavior_id(::int64_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.behavior_id_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// BehaviorPacket
-
-// int64 behavior_id = 1;
-inline void BehaviorPacket::clear_behavior_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.behavior_id_ = ::int64_t{0};
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline ::int64_t BehaviorPacket::behavior_id() const {
-  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.behavior_id)
-  return _internal_behavior_id();
-}
-inline void BehaviorPacket::set_behavior_id(::int64_t value) {
-  _internal_set_behavior_id(value);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  // @@protoc_insertion_point(field_set:hkt.BehaviorPacket.behavior_id)
-}
-inline ::int64_t BehaviorPacket::_internal_behavior_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.behavior_id_;
-}
-inline void BehaviorPacket::_internal_set_behavior_id(::int64_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.behavior_id_ = value;
-}
-
-// int64 owner_player_id = 2;
-inline void BehaviorPacket::clear_owner_player_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.owner_player_id_ = ::int64_t{0};
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-inline ::int64_t BehaviorPacket::owner_player_id() const {
-  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.owner_player_id)
-  return _internal_owner_player_id();
-}
-inline void BehaviorPacket::set_owner_player_id(::int64_t value) {
-  _internal_set_owner_player_id(value);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:hkt.BehaviorPacket.owner_player_id)
-}
-inline ::int64_t BehaviorPacket::_internal_owner_player_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.owner_player_id_;
-}
-inline void BehaviorPacket::_internal_set_owner_player_id(::int64_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.owner_player_id_ = value;
-}
-
-// .hkt.MovePacket move_packet = 3;
-inline bool BehaviorPacket::has_move_packet() const {
-  return packet_case() == kMovePacket;
-}
-inline bool BehaviorPacket::_internal_has_move_packet() const {
-  return packet_case() == kMovePacket;
-}
-inline void BehaviorPacket::set_has_move_packet() {
-  _impl_._oneof_case_[0] = kMovePacket;
-}
-inline void BehaviorPacket::clear_move_packet() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (packet_case() == kMovePacket) {
-    if (GetArena() == nullptr) {
-      delete _impl_.packet_.move_packet_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.packet_.move_packet_);
-    }
-    clear_has_packet();
-  }
-}
-inline ::hkt::MovePacket* PROTOBUF_NULLABLE BehaviorPacket::release_move_packet() {
-  // @@protoc_insertion_point(field_release:hkt.BehaviorPacket.move_packet)
-  if (packet_case() == kMovePacket) {
-    clear_has_packet();
-    auto* temp = reinterpret_cast<::hkt::MovePacket*>(_impl_.packet_.move_packet_);
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.packet_.move_packet_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::hkt::MovePacket& BehaviorPacket::_internal_move_packet() const {
-  return packet_case() == kMovePacket ? *reinterpret_cast<::hkt::MovePacket*>(_impl_.packet_.move_packet_) : reinterpret_cast<::hkt::MovePacket&>(::hkt::_MovePacket_default_instance_);
-}
-inline const ::hkt::MovePacket& BehaviorPacket::move_packet() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.move_packet)
-  return _internal_move_packet();
-}
-inline ::hkt::MovePacket* PROTOBUF_NULLABLE BehaviorPacket::unsafe_arena_release_move_packet() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:hkt.BehaviorPacket.move_packet)
-  if (packet_case() == kMovePacket) {
-    clear_has_packet();
-    auto* temp = reinterpret_cast<::hkt::MovePacket*>(_impl_.packet_.move_packet_);
-    _impl_.packet_.move_packet_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void BehaviorPacket::unsafe_arena_set_allocated_move_packet(
-    ::hkt::MovePacket* PROTOBUF_NULLABLE value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_packet();
-  if (value) {
-    set_has_move_packet();
-    _impl_.packet_.move_packet_ = reinterpret_cast<::google::protobuf::Message*>(value);
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:hkt.BehaviorPacket.move_packet)
-}
-inline ::hkt::MovePacket* PROTOBUF_NONNULL BehaviorPacket::_internal_mutable_move_packet() {
-  if (packet_case() != kMovePacket) {
-    clear_packet();
-    set_has_move_packet();
-    _impl_.packet_.move_packet_ = reinterpret_cast<::google::protobuf::Message*>(
-        ::google::protobuf::Message::DefaultConstruct<::hkt::MovePacket>(GetArena()));
-  }
-  return reinterpret_cast<::hkt::MovePacket*>(_impl_.packet_.move_packet_);
-}
-inline ::hkt::MovePacket* PROTOBUF_NONNULL BehaviorPacket::mutable_move_packet()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::hkt::MovePacket* _msg = _internal_mutable_move_packet();
-  // @@protoc_insertion_point(field_mutable:hkt.BehaviorPacket.move_packet)
-  return _msg;
-}
-
-// .hkt.JumpPacket jump_packet = 4;
-inline bool BehaviorPacket::has_jump_packet() const {
-  return packet_case() == kJumpPacket;
-}
-inline bool BehaviorPacket::_internal_has_jump_packet() const {
-  return packet_case() == kJumpPacket;
-}
-inline void BehaviorPacket::set_has_jump_packet() {
-  _impl_._oneof_case_[0] = kJumpPacket;
-}
-inline void BehaviorPacket::clear_jump_packet() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (packet_case() == kJumpPacket) {
-    if (GetArena() == nullptr) {
-      delete _impl_.packet_.jump_packet_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.packet_.jump_packet_);
-    }
-    clear_has_packet();
-  }
-}
-inline ::hkt::JumpPacket* PROTOBUF_NULLABLE BehaviorPacket::release_jump_packet() {
-  // @@protoc_insertion_point(field_release:hkt.BehaviorPacket.jump_packet)
-  if (packet_case() == kJumpPacket) {
-    clear_has_packet();
-    auto* temp = reinterpret_cast<::hkt::JumpPacket*>(_impl_.packet_.jump_packet_);
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.packet_.jump_packet_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::hkt::JumpPacket& BehaviorPacket::_internal_jump_packet() const {
-  return packet_case() == kJumpPacket ? *reinterpret_cast<::hkt::JumpPacket*>(_impl_.packet_.jump_packet_) : reinterpret_cast<::hkt::JumpPacket&>(::hkt::_JumpPacket_default_instance_);
-}
-inline const ::hkt::JumpPacket& BehaviorPacket::jump_packet() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.jump_packet)
-  return _internal_jump_packet();
-}
-inline ::hkt::JumpPacket* PROTOBUF_NULLABLE BehaviorPacket::unsafe_arena_release_jump_packet() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:hkt.BehaviorPacket.jump_packet)
-  if (packet_case() == kJumpPacket) {
-    clear_has_packet();
-    auto* temp = reinterpret_cast<::hkt::JumpPacket*>(_impl_.packet_.jump_packet_);
-    _impl_.packet_.jump_packet_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void BehaviorPacket::unsafe_arena_set_allocated_jump_packet(
-    ::hkt::JumpPacket* PROTOBUF_NULLABLE value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_packet();
-  if (value) {
-    set_has_jump_packet();
-    _impl_.packet_.jump_packet_ = reinterpret_cast<::google::protobuf::Message*>(value);
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:hkt.BehaviorPacket.jump_packet)
-}
-inline ::hkt::JumpPacket* PROTOBUF_NONNULL BehaviorPacket::_internal_mutable_jump_packet() {
-  if (packet_case() != kJumpPacket) {
-    clear_packet();
-    set_has_jump_packet();
-    _impl_.packet_.jump_packet_ = reinterpret_cast<::google::protobuf::Message*>(
-        ::google::protobuf::Message::DefaultConstruct<::hkt::JumpPacket>(GetArena()));
-  }
-  return reinterpret_cast<::hkt::JumpPacket*>(_impl_.packet_.jump_packet_);
-}
-inline ::hkt::JumpPacket* PROTOBUF_NONNULL BehaviorPacket::mutable_jump_packet()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::hkt::JumpPacket* _msg = _internal_mutable_jump_packet();
-  // @@protoc_insertion_point(field_mutable:hkt.BehaviorPacket.jump_packet)
-  return _msg;
-}
-
-// .hkt.AttackPacket attack_packet = 5;
-inline bool BehaviorPacket::has_attack_packet() const {
-  return packet_case() == kAttackPacket;
-}
-inline bool BehaviorPacket::_internal_has_attack_packet() const {
-  return packet_case() == kAttackPacket;
-}
-inline void BehaviorPacket::set_has_attack_packet() {
-  _impl_._oneof_case_[0] = kAttackPacket;
-}
-inline void BehaviorPacket::clear_attack_packet() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (packet_case() == kAttackPacket) {
-    if (GetArena() == nullptr) {
-      delete _impl_.packet_.attack_packet_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.packet_.attack_packet_);
-    }
-    clear_has_packet();
-  }
-}
-inline ::hkt::AttackPacket* PROTOBUF_NULLABLE BehaviorPacket::release_attack_packet() {
-  // @@protoc_insertion_point(field_release:hkt.BehaviorPacket.attack_packet)
-  if (packet_case() == kAttackPacket) {
-    clear_has_packet();
-    auto* temp = reinterpret_cast<::hkt::AttackPacket*>(_impl_.packet_.attack_packet_);
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.packet_.attack_packet_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::hkt::AttackPacket& BehaviorPacket::_internal_attack_packet() const {
-  return packet_case() == kAttackPacket ? *reinterpret_cast<::hkt::AttackPacket*>(_impl_.packet_.attack_packet_) : reinterpret_cast<::hkt::AttackPacket&>(::hkt::_AttackPacket_default_instance_);
-}
-inline const ::hkt::AttackPacket& BehaviorPacket::attack_packet() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.attack_packet)
-  return _internal_attack_packet();
-}
-inline ::hkt::AttackPacket* PROTOBUF_NULLABLE BehaviorPacket::unsafe_arena_release_attack_packet() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:hkt.BehaviorPacket.attack_packet)
-  if (packet_case() == kAttackPacket) {
-    clear_has_packet();
-    auto* temp = reinterpret_cast<::hkt::AttackPacket*>(_impl_.packet_.attack_packet_);
-    _impl_.packet_.attack_packet_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void BehaviorPacket::unsafe_arena_set_allocated_attack_packet(
-    ::hkt::AttackPacket* PROTOBUF_NULLABLE value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_packet();
-  if (value) {
-    set_has_attack_packet();
-    _impl_.packet_.attack_packet_ = reinterpret_cast<::google::protobuf::Message*>(value);
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:hkt.BehaviorPacket.attack_packet)
-}
-inline ::hkt::AttackPacket* PROTOBUF_NONNULL BehaviorPacket::_internal_mutable_attack_packet() {
-  if (packet_case() != kAttackPacket) {
-    clear_packet();
-    set_has_attack_packet();
-    _impl_.packet_.attack_packet_ = reinterpret_cast<::google::protobuf::Message*>(
-        ::google::protobuf::Message::DefaultConstruct<::hkt::AttackPacket>(GetArena()));
-  }
-  return reinterpret_cast<::hkt::AttackPacket*>(_impl_.packet_.attack_packet_);
-}
-inline ::hkt::AttackPacket* PROTOBUF_NONNULL BehaviorPacket::mutable_attack_packet()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::hkt::AttackPacket* _msg = _internal_mutable_attack_packet();
-  // @@protoc_insertion_point(field_mutable:hkt.BehaviorPacket.attack_packet)
-  return _msg;
-}
-
-// .hkt.DestroyPacket destroy_packet = 6;
-inline bool BehaviorPacket::has_destroy_packet() const {
-  return packet_case() == kDestroyPacket;
-}
-inline bool BehaviorPacket::_internal_has_destroy_packet() const {
-  return packet_case() == kDestroyPacket;
-}
-inline void BehaviorPacket::set_has_destroy_packet() {
-  _impl_._oneof_case_[0] = kDestroyPacket;
-}
-inline void BehaviorPacket::clear_destroy_packet() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (packet_case() == kDestroyPacket) {
-    if (GetArena() == nullptr) {
-      delete _impl_.packet_.destroy_packet_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.packet_.destroy_packet_);
-    }
-    clear_has_packet();
-  }
-}
-inline ::hkt::DestroyPacket* PROTOBUF_NULLABLE BehaviorPacket::release_destroy_packet() {
-  // @@protoc_insertion_point(field_release:hkt.BehaviorPacket.destroy_packet)
-  if (packet_case() == kDestroyPacket) {
-    clear_has_packet();
-    auto* temp = reinterpret_cast<::hkt::DestroyPacket*>(_impl_.packet_.destroy_packet_);
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.packet_.destroy_packet_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::hkt::DestroyPacket& BehaviorPacket::_internal_destroy_packet() const {
-  return packet_case() == kDestroyPacket ? *reinterpret_cast<::hkt::DestroyPacket*>(_impl_.packet_.destroy_packet_) : reinterpret_cast<::hkt::DestroyPacket&>(::hkt::_DestroyPacket_default_instance_);
-}
-inline const ::hkt::DestroyPacket& BehaviorPacket::destroy_packet() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.destroy_packet)
-  return _internal_destroy_packet();
-}
-inline ::hkt::DestroyPacket* PROTOBUF_NULLABLE BehaviorPacket::unsafe_arena_release_destroy_packet() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:hkt.BehaviorPacket.destroy_packet)
-  if (packet_case() == kDestroyPacket) {
-    clear_has_packet();
-    auto* temp = reinterpret_cast<::hkt::DestroyPacket*>(_impl_.packet_.destroy_packet_);
-    _impl_.packet_.destroy_packet_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void BehaviorPacket::unsafe_arena_set_allocated_destroy_packet(
-    ::hkt::DestroyPacket* PROTOBUF_NULLABLE value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_packet();
-  if (value) {
-    set_has_destroy_packet();
-    _impl_.packet_.destroy_packet_ = reinterpret_cast<::google::protobuf::Message*>(value);
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:hkt.BehaviorPacket.destroy_packet)
-}
-inline ::hkt::DestroyPacket* PROTOBUF_NONNULL BehaviorPacket::_internal_mutable_destroy_packet() {
-  if (packet_case() != kDestroyPacket) {
-    clear_packet();
-    set_has_destroy_packet();
-    _impl_.packet_.destroy_packet_ = reinterpret_cast<::google::protobuf::Message*>(
-        ::google::protobuf::Message::DefaultConstruct<::hkt::DestroyPacket>(GetArena()));
-  }
-  return reinterpret_cast<::hkt::DestroyPacket*>(_impl_.packet_.destroy_packet_);
-}
-inline ::hkt::DestroyPacket* PROTOBUF_NONNULL BehaviorPacket::mutable_destroy_packet()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::hkt::DestroyPacket* _msg = _internal_mutable_destroy_packet();
-  // @@protoc_insertion_point(field_mutable:hkt.BehaviorPacket.destroy_packet)
-  return _msg;
-}
-
-inline bool BehaviorPacket::has_packet() const {
-  return packet_case() != PACKET_NOT_SET;
-}
-inline void BehaviorPacket::clear_has_packet() {
-  _impl_._oneof_case_[0] = PACKET_NOT_SET;
-}
-inline BehaviorPacket::PacketCase BehaviorPacket::packet_case() const {
-  return BehaviorPacket::PacketCase(_impl_._oneof_case_[0]);
-}
-// -------------------------------------------------------------------
-
 // SyncRequest
 
 // int64 player_id = 1;
@@ -2857,104 +987,143 @@ inline void SyncRequest::_internal_set_group_id(::int32_t value) {
 
 // -------------------------------------------------------------------
 
-// SyncResponse
+// BehaviorPacket
 
-// .hkt.BehaviorPacket packet = 1;
-inline bool SyncResponse::has_packet() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.packet_ != nullptr);
-  return value;
-}
-inline void SyncResponse::clear_packet() {
+// int64 behavior_id = 1;
+inline void BehaviorPacket::clear_behavior_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.packet_ != nullptr) _impl_.packet_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_.behavior_id_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::hkt::BehaviorPacket& SyncResponse::_internal_packet() const {
+inline ::int64_t BehaviorPacket::behavior_id() const {
+  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.behavior_id)
+  return _internal_behavior_id();
+}
+inline void BehaviorPacket::set_behavior_id(::int64_t value) {
+  _internal_set_behavior_id(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:hkt.BehaviorPacket.behavior_id)
+}
+inline ::int64_t BehaviorPacket::_internal_behavior_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::hkt::BehaviorPacket* p = _impl_.packet_;
-  return p != nullptr ? *p : reinterpret_cast<const ::hkt::BehaviorPacket&>(::hkt::_BehaviorPacket_default_instance_);
+  return _impl_.behavior_id_;
 }
-inline const ::hkt::BehaviorPacket& SyncResponse::packet() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:hkt.SyncResponse.packet)
-  return _internal_packet();
-}
-inline void SyncResponse::unsafe_arena_set_allocated_packet(
-    ::hkt::BehaviorPacket* PROTOBUF_NULLABLE value) {
+inline void BehaviorPacket::_internal_set_behavior_id(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.packet_);
-  }
-  _impl_.packet_ = reinterpret_cast<::hkt::BehaviorPacket*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:hkt.SyncResponse.packet)
+  _impl_.behavior_id_ = value;
 }
-inline ::hkt::BehaviorPacket* PROTOBUF_NULLABLE SyncResponse::release_packet() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
 
+// int64 owner_player_id = 2;
+inline void BehaviorPacket::clear_owner_player_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.owner_player_id_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::int64_t BehaviorPacket::owner_player_id() const {
+  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.owner_player_id)
+  return _internal_owner_player_id();
+}
+inline void BehaviorPacket::set_owner_player_id(::int64_t value) {
+  _internal_set_owner_player_id(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:hkt.BehaviorPacket.owner_player_id)
+}
+inline ::int64_t BehaviorPacket::_internal_owner_player_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.owner_player_id_;
+}
+inline void BehaviorPacket::_internal_set_owner_player_id(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.owner_player_id_ = value;
+}
+
+// int32 behavior_type_id = 3;
+inline void BehaviorPacket::clear_behavior_type_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.behavior_type_id_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline ::int32_t BehaviorPacket::behavior_type_id() const {
+  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.behavior_type_id)
+  return _internal_behavior_type_id();
+}
+inline void BehaviorPacket::set_behavior_type_id(::int32_t value) {
+  _internal_set_behavior_type_id(value);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  // @@protoc_insertion_point(field_set:hkt.BehaviorPacket.behavior_type_id)
+}
+inline ::int32_t BehaviorPacket::_internal_behavior_type_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.behavior_type_id_;
+}
+inline void BehaviorPacket::_internal_set_behavior_type_id(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.behavior_type_id_ = value;
+}
+
+// bytes payload = 4;
+inline void BehaviorPacket::clear_payload() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.payload_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::hkt::BehaviorPacket* released = _impl_.packet_;
-  _impl_.packet_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
+}
+inline const ::std::string& BehaviorPacket::payload() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:hkt.BehaviorPacket.payload)
+  return _internal_payload();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void BehaviorPacket::set_payload(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.payload_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:hkt.BehaviorPacket.payload)
+}
+inline ::std::string* PROTOBUF_NONNULL BehaviorPacket::mutable_payload()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_payload();
+  // @@protoc_insertion_point(field_mutable:hkt.BehaviorPacket.payload)
+  return _s;
+}
+inline const ::std::string& BehaviorPacket::_internal_payload() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.payload_.Get();
+}
+inline void BehaviorPacket::_internal_set_payload(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.payload_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL BehaviorPacket::_internal_mutable_payload() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.payload_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE BehaviorPacket::release_payload() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:hkt.BehaviorPacket.payload)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.payload_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.payload_.Set("", GetArena());
   }
   return released;
 }
-inline ::hkt::BehaviorPacket* PROTOBUF_NULLABLE SyncResponse::unsafe_arena_release_packet() {
+inline void BehaviorPacket::set_allocated_payload(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:hkt.SyncResponse.packet)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::hkt::BehaviorPacket* temp = _impl_.packet_;
-  _impl_.packet_ = nullptr;
-  return temp;
-}
-inline ::hkt::BehaviorPacket* PROTOBUF_NONNULL SyncResponse::_internal_mutable_packet() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.packet_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::hkt::BehaviorPacket>(GetArena());
-    _impl_.packet_ = reinterpret_cast<::hkt::BehaviorPacket*>(p);
-  }
-  return _impl_.packet_;
-}
-inline ::hkt::BehaviorPacket* PROTOBUF_NONNULL SyncResponse::mutable_packet()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::hkt::BehaviorPacket* _msg = _internal_mutable_packet();
-  // @@protoc_insertion_point(field_mutable:hkt.SyncResponse.packet)
-  return _msg;
-}
-inline void SyncResponse::set_allocated_packet(::hkt::BehaviorPacket* PROTOBUF_NULLABLE value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.packet_);
-  }
-
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = value->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-
-  _impl_.packet_ = reinterpret_cast<::hkt::BehaviorPacket*>(value);
-  // @@protoc_insertion_point(field_set_allocated:hkt.SyncResponse.packet)
+  _impl_.payload_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.payload_.IsDefault()) {
+    _impl_.payload_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:hkt.BehaviorPacket.payload)
 }
 
 // -------------------------------------------------------------------
@@ -3081,6 +1250,108 @@ inline void BehaviorRequest::set_allocated_packet(::hkt::BehaviorPacket* PROTOBU
 
   _impl_.packet_ = reinterpret_cast<::hkt::BehaviorPacket*>(value);
   // @@protoc_insertion_point(field_set_allocated:hkt.BehaviorRequest.packet)
+}
+
+// -------------------------------------------------------------------
+
+// SyncResponse
+
+// .hkt.BehaviorPacket packet = 1;
+inline bool SyncResponse::has_packet() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.packet_ != nullptr);
+  return value;
+}
+inline void SyncResponse::clear_packet() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.packet_ != nullptr) _impl_.packet_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::hkt::BehaviorPacket& SyncResponse::_internal_packet() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::hkt::BehaviorPacket* p = _impl_.packet_;
+  return p != nullptr ? *p : reinterpret_cast<const ::hkt::BehaviorPacket&>(::hkt::_BehaviorPacket_default_instance_);
+}
+inline const ::hkt::BehaviorPacket& SyncResponse::packet() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:hkt.SyncResponse.packet)
+  return _internal_packet();
+}
+inline void SyncResponse::unsafe_arena_set_allocated_packet(
+    ::hkt::BehaviorPacket* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.packet_);
+  }
+  _impl_.packet_ = reinterpret_cast<::hkt::BehaviorPacket*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:hkt.SyncResponse.packet)
+}
+inline ::hkt::BehaviorPacket* PROTOBUF_NULLABLE SyncResponse::release_packet() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::hkt::BehaviorPacket* released = _impl_.packet_;
+  _impl_.packet_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::hkt::BehaviorPacket* PROTOBUF_NULLABLE SyncResponse::unsafe_arena_release_packet() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:hkt.SyncResponse.packet)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::hkt::BehaviorPacket* temp = _impl_.packet_;
+  _impl_.packet_ = nullptr;
+  return temp;
+}
+inline ::hkt::BehaviorPacket* PROTOBUF_NONNULL SyncResponse::_internal_mutable_packet() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.packet_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::hkt::BehaviorPacket>(GetArena());
+    _impl_.packet_ = reinterpret_cast<::hkt::BehaviorPacket*>(p);
+  }
+  return _impl_.packet_;
+}
+inline ::hkt::BehaviorPacket* PROTOBUF_NONNULL SyncResponse::mutable_packet()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::hkt::BehaviorPacket* _msg = _internal_mutable_packet();
+  // @@protoc_insertion_point(field_mutable:hkt.SyncResponse.packet)
+  return _msg;
+}
+inline void SyncResponse::set_allocated_packet(::hkt::BehaviorPacket* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.packet_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.packet_ = reinterpret_cast<::hkt::BehaviorPacket*>(value);
+  // @@protoc_insertion_point(field_set_allocated:hkt.SyncResponse.packet)
 }
 
 #ifdef __GNUC__

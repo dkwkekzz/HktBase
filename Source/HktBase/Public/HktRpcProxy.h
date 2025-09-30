@@ -1,11 +1,16 @@
 #pragma once
 
+#include "HktDef.h"
 #include "HktGrpc.h"
 #include "HktRpcTraits.h"
+#include "HktRpcStatus.h"
 #include <memory>
 #include <functional>
 #include <thread>
 #include <unordered_map>
+
+struct FHktPacketBase;
+class IHktBehavior;
 
 // 클라이언트 측 RPC 프록시 클래스입니다.
 // 템플릿과 Trait를 사용하여 모든 RPC 호출을 일반화된 방식으로 처리합니다.
@@ -23,10 +28,6 @@ private:
 		virtual void Proceed(bool bOk) = 0;
 	};
 
-public:
-	FHktRpcProxy(const FString& ServerAddress);
-	~FHktRpcProxy();
-
 	// 단항 RPC를 호출하는 템플릿 함수
 	template<typename TRpcTrait>
 	void Call(const typename TRpcTrait::TRequest& Request, std::function<void(const grpc::Status&, const typename TRpcTrait::TResponse&)> Callback)
@@ -41,7 +42,7 @@ public:
 				// Trait에 정의된 함수 포인터를 사용하여 비동기 호출을 준비합니다.
 				ResponseReader = (Proxy->Stub.get()->*TRpcTrait::PrepareAsyncFunc)(&Context, InRequest, &Proxy->CompletionQueue);
 				ResponseReader->StartCall();
-				
+
 				// 응답이 오면 실행될 로직을 정의하고 CompletionQueue에 태그로 this를 등록합니다.
 				ResponseReader->Finish(&Response, &Status, this);
 			}
@@ -52,8 +53,13 @@ public:
 				if (!bOk)
 				{
 					Status = grpc::Status(grpc::StatusCode::UNAVAILABLE, "RPC failed or cancelled");
+					UE_LOG(LogHktRpc, Error, TEXT("UnaryCall failed. Status: %s"), *FString(Status.error_message().c_str()));
 				}
-				
+				else
+				{
+					UE_LOG(LogHktRpc, Log, TEXT("UnaryCall response received. Status: %s"), *FString(Status.ok() ? "OK" : Status.error_message().c_str()));
+				}
+
 				// 등록된 콜백을 실행합니다.
 				Cb(Status, Response);
 
@@ -96,14 +102,16 @@ public:
 			{
 				if (State == EState::STARTING)
 				{
-					if(bOk)
+					if (bOk)
 					{
+						UE_LOG(LogHktRpc, Log, TEXT("StreamCall started successfully."));
 						// 스트림이 성공적으로 시작되었습니다. 첫 메시지를 읽습니다.
 						State = EState::READING;
 						Reader->Read(&Response, this);
 					}
 					else
 					{
+						UE_LOG(LogHktRpc, Error, TEXT("StreamCall failed to start."));
 						// 스트림 시작 실패. 종료 상태로 넘어갑니다.
 						State = EState::FINISHING;
 						Reader->Finish(&Status, this);
@@ -115,11 +123,13 @@ public:
 					{
 						// 메시지를 성공적으로 읽었습니다. 콜백을 호출합니다.
 						Cb(grpc::Status::OK, Response);
+						UE_LOG(LogHktRpc, Verbose, TEXT("StreamCall message received."));
 						// 다음 메시지를 읽습니다.
 						Reader->Read(&Response, this);
 					}
 					else
 					{
+						UE_LOG(LogHktRpc, Log, TEXT("StreamCall ended by server."));
 						// 스트림이 끝났습니다 (bOk == false). 최종 상태를 얻기 위해 Finish를 호출합니다.
 						State = EState::FINISHING;
 						Reader->Finish(&Status, this);
@@ -128,6 +138,7 @@ public:
 				else if (State == EState::FINISHING)
 				{
 					// 최종 상태를 받았습니다. 마지막으로 콜백을 호출하고 객체를 삭제합니다.
+					UE_LOG(LogHktRpc, Log, TEXT("StreamCall finished. Final status: %s"), *FString(Status.ok() ? "OK" : Status.error_message().c_str()));
 					Cb(Status, Response);
 					delete this;
 				}
@@ -140,15 +151,21 @@ public:
 			typename TRpcTrait::TResponse Response;
 			std::unique_ptr<grpc::ClientAsyncReader<typename TRpcTrait::TResponse>> Reader;
 			std::function<void(const grpc::Status&, const typename TRpcTrait::TResponse&)> Cb;
-			
+
 			enum class EState { STARTING, READING, FINISHING };
 			EState State = EState::STARTING;
 		};
-		
+
 		// FStreamCall 인스턴스를 생성합니다. 이 인스턴스는 스트림이 끝날 때 스스로 삭제됩니다.
 		new FStreamCall(this, Request, Callback);
 	}
 
+public:
+	FHktRpcProxy(const FString& ServerAddress);
+	~FHktRpcProxy();
+
+	void ExecuteBehavior(int64 GroupId, int64 SubjectId, int32 BehaviorTypeId, const TArray<uint8>& Bytes);
+    void SyncGroup(int64 SubjectId, int64 GroupId, TFunction<void(TUniquePtr<IHktBehavior>)> Callback);
 
 private:
 	// CompletionQueue를 폴링하고 콜백을 실행하는 워커 스레드 함수

@@ -1,9 +1,10 @@
 #pragma once
 
 #include "HktDef.h"
-#include "HktBehavior.h"
 
-class FHktGraph
+class IHktBehavior;
+
+class HKTBASE_API FHktGraph
 {
 public:
 	FHktGraph();

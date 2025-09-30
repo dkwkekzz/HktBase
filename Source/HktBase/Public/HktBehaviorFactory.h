@@ -2,61 +2,70 @@
 
 #include "HktDef.h"
 #include "HktGrpc.h"
+#include "HktBehavior.h"
+#include "HktStructSerializer.h"
 
-// Àü¹æ ¼±¾ğ
-class IHktBehavior;
 
 /**
- * @brief hkt::BehaviorPacketÀ» ¹Ş¾Æ IHktBehavior °´Ã¼¸¦ »ı¼ºÇÏ´Â µî·Ï ±â¹İ ÆÑÅä¸® Å¬·¡½º.
- * »õ·Î¿î Behavior Å¸ÀÔÀ» Ãß°¡ÇÒ ¶§ ÀÌ Å¬·¡½ºÀÇ ÄÚµå¸¦ ¼öÁ¤ÇÒ ÇÊ¿ä°¡ ¾ø½À´Ï´Ù.
+ * @brief hkt::BehaviorPacketï¿½ï¿½ ï¿½Ş¾ï¿½ IHktBehavior ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ä¸® Å¬ï¿½ï¿½ï¿½ï¿½.
+ * ï¿½ï¿½ï¿½Î¿ï¿½ Behavior Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
  */
 class FHktBehaviorFactory
 {
 public:
-    // Behavior »ı¼º ÇÔ¼öÀÇ Å¸ÀÔÀ» Á¤ÀÇÇÕ´Ï´Ù.
+    // Behavior ìƒì„± í•¨ìˆ˜ì˜ íƒ€ì…ì„ ì •ì˜í•©ë‹ˆë‹¤.
     using TCreatorFunc = TFunction<TUniquePtr<IHktBehavior>(const hkt::BehaviorPacket&)>;
 
     /**
-     * @brief µî·ÏµÈ »ı¼º ÇÔ¼ö¸¦ »ç¿ëÇØ BehaviorPacketÀ¸·ÎºÎÅÍ ½ÇÁ¦ Behavior °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù.
-     * @param Packet ¼­¹ö·ÎºÎÅÍ µ¿±âÈ­µÈ Behavior ÆĞÅ¶
-     * @return »ı¼ºµÈ Behavior °´Ã¼ÀÇ TUniquePtr. µî·ÏµÇÁö ¾ÊÀº Å¸ÀÔÀÌ¸é nullptrÀ» ¹İÈ¯ÇÕ´Ï´Ù.
+     * @brief ë“±ë¡ëœ ìƒì„± í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ BehaviorPacketìœ¼ë¡œë¶€í„° íŠ¹ì • Behavior ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
+     * @param Packet ì„œë²„ë¡œë¶€í„° ìˆ˜ì‹ í•œ Behavior íŒ¨í‚·
+     * @return ìƒì„±ëœ Behavior ê°ì²´ì˜ TUniquePtr. ë“±ë¡ë˜ì§€ ì•Šì€ íƒ€ì…ì´ë©´ nullptrì„ ë°˜í™˜í•©ë‹ˆë‹¤.
      */
     static TUniquePtr<IHktBehavior> CreateBehavior(const hkt::BehaviorPacket& Packet);
 
     /**
-     * @brief Æ¯Á¤ Packet Case¿¡ ´ëÇÑ Behavior »ı¼º ÇÔ¼ö¸¦ ÆÑÅä¸®¿¡ µî·ÏÇÕ´Ï´Ù.
-     * @param PacketCase µî·ÏÇÒ ÆĞÅ¶ÀÇ enum °ª
-     * @param Func »ı¼ºÀÚ ¶÷´Ù ÇÔ¼ö
+     * @brief íŠ¹ì • Behavior íƒ€ì… IDì— ëŒ€í•´ Behavior ìƒì„± í•¨ìˆ˜ë¥¼ ë ˆì§€ìŠ¤íŠ¸ë¦¬ì— ë“±ë¡í•©ë‹ˆë‹¤.
+     * @param BehaviorTypeId ë“±ë¡í•  íŒ¨í‚·ì˜ íƒ€ì… ID
+     * @param Func ìƒì„±ì í•¨ìˆ˜
      */
-    static void Register(hkt::BehaviorPacket::PacketCase PacketCase, TCreatorFunc Func);
+    static void Register(int32 BehaviorTypeId, TCreatorFunc Func);
 
 private:
-    // »ı¼º ÇÔ¼öµéÀ» ÀúÀåÇÏ´Â TMap¿¡ ´ëÇÑ Á¤Àû Á¢±ÙÀÚ¸¦ Á¦°øÇÕ´Ï´Ù.
-    static TMap<hkt::BehaviorPacket::PacketCase, TCreatorFunc>& GetCreators();
+    // ìƒì„± í•¨ìˆ˜ë“¤ì„ ì €ì¥í•˜ëŠ” TMapì— ëŒ€í•œ ì •ì  ì ‘ê·¼ìë¥¼ ì œê³µí•©ë‹ˆë‹¤.
+    static TMap<int32, TCreatorFunc>& GetCreators();
 };
 
+
 /**
- * @brief ÄÄÆÄÀÏ Å¸ÀÓ¿¡ Behavior »ı¼º ÇÔ¼ö¸¦ ÀÚµ¿À¸·Î ÆÑÅä¸®¿¡ µî·ÏÇÏ´Â ÇïÆÛ Å¬·¡½º.
- * @tparam TBehaviorTrait µî·ÏÇÒ BehaviorÀÇ Trait
+ * @brief í…œí”Œë¦¿ì„ í†µí•´ Behavior ìƒì„± í•¨ìˆ˜ë¥¼ ìë™ì ìœ¼ë¡œ ë ˆì§€ìŠ¤íŠ¸ë¦¬ì— ë“±ë¡í•˜ëŠ” í—¬í¼ í´ë˜ìŠ¤.
+ * @tparam TPacket ë“±ë¡í•  Behaviorì˜ USTRUCT íŒ¨í‚· íƒ€ì…
  */
-template <typename TBehaviorTrait>
+template <typename TPacket>
 class FBehaviorRegistrar
 {
 public:
     FBehaviorRegistrar()
     {
-        // Trait Á¤º¸¸¦ »ç¿ëÇÏ¿© »ı¼ºÀÚ ¶÷´Ù ÇÔ¼ö¸¦ ¸¸µé°í ÆÑÅä¸®¿¡ µî·ÏÇÕ´Ï´Ù.
-        auto Creator = [](const hkt::BehaviorPacket& Packet) -> TUniquePtr<IHktBehavior> {
-            const int64 BehaviorId = Packet.behavior_id();
-            const int64 OwnerPlayerId = Packet.owner_player_id();
+        // Trait ì •ë³´ë¥¼ ì‚¬ìš©í•˜ì—¬ ìƒì„±ì í•¨ìˆ˜ë¥¼ ë§Œë“¤ê³  ë ˆì§€ìŠ¤íŠ¸ë¦¬ì— ë“±ë¡í•©ë‹ˆë‹¤.
+        auto Creator = [](const hkt::BehaviorPacket& Packet) -> TUniquePtr<IHktBehavior>
+            {
+                const int64 BehaviorId = Packet.behavior_id();
+                const int64 OwnerPlayerId = Packet.owner_player_id();
 
-            // Trait¿¡ Á¤ÀÇµÈ GetPacketFrom ÇÔ¼ö¸¦ ÅëÇØ ±¸Ã¼ÀûÀÎ ÆĞÅ¶À» °¡Á®¿É´Ï´Ù.
-            const auto& SpecificPacket = TBehaviorTrait::GetPacketFrom(Packet);
+                const std::string& Payload = Packet.payload();
+                TArray<uint8> Bytes(reinterpret_cast<const uint8*>(Payload.data()), Payload.size());
 
-            // Trait¿¡ Á¤ÀÇµÈ Behavior Å¸ÀÔÀ» »ç¿ëÇÏ¿© °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù.
-            return MakeUnique<typename TBehaviorTrait::Behavior>(BehaviorId, OwnerPlayerId, SpecificPacket);
+				TPacket PacketInstance;
+                if (FHktStructSerializer::DeserializeStructFromBytes(Bytes, PacketInstance) == false)
+                {
+                    return nullptr;
+                }
+
+                // Traitì— ì •ì˜ëœ Behavior íƒ€ì…ì„ ì‚¬ìš©í•˜ì—¬ ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
+                return MakeUnique<THktBehavior<TPacket>>(BehaviorId, OwnerPlayerId, PacketInstance);
             };
 
-        FHktBehaviorFactory::Register(TBehaviorTrait::CaseEnum, Creator);
+        // ì´ ì½”ë“œëŠ” ì»´íŒŒì¼ íƒ€ì„ì— ê° íŒ¨í‚· íƒ€ì…ì— ëŒ€í•œ ê³ ìœ  IDë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
+        FHktBehaviorFactory::Register(GetBehaviorTypeId<TPacket>(), Creator);
     }
 };

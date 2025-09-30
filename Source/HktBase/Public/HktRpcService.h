@@ -1,7 +1,9 @@
 #pragma once
 
+#include "HktBase.h"
 #include "HktGrpc.h"
 #include "HktRpcTraits.h"
+#include "HktDef.h"
 #include <memory>
 #include <thread>
 #include <vector>
@@ -162,6 +164,7 @@ private:
 		{
 			if (!bOk)
 			{
+				UE_LOG(LogHktRpc, Error, TEXT("UnaryCallHandler failed."));
 				delete this;
 				return;
 			}
@@ -173,10 +176,13 @@ private:
 			else if (Status == ECallStatus::PROCESS)
 			{
 				new FUnaryCallHandler<TRpcTrait>(Service, CQ);
-
+				UE_LOG(LogHktRpc, Log, TEXT("UnaryCallHandler: Processing request."));
 				// Trait에 TPacket이 정의되어 있는지 확인하고, 해당 타입의 세션 매니저를 사용합니다.
 				if constexpr (std::is_same_v<TRpcTrait, HktRpc::FExecuteBehaviorRpcTrait>)
 				{
+					static int32 NextBehaviorId = 0;
+					Request.mutable_packet()->set_behavior_id(++NextBehaviorId); // 서버에서 ID 할당
+
 					using TPacket = typename TRpcTrait::TPacket;
 					TSessionManager<TPacket>::Get().BroadcastToGroup(Request.group_id(), Request.packet());
 				}
@@ -185,6 +191,7 @@ private:
 			}
 			else
 			{
+				UE_LOG(LogHktRpc, Log, TEXT("UnaryCallHandler: Finished."));
 				delete this;
 			}
 		}
@@ -212,11 +219,13 @@ private:
 		{
 			static std::atomic<uint64_t> NextSessionId = 1;
 			SessionId = NextSessionId.fetch_add(1);
+			UE_LOG(LogHktRpc, Log, TEXT("StreamSessionHandler created. SessionId: %llu"), SessionId);
 			Start();
 		}
 
 		~FStreamSessionHandler()
 		{
+			UE_LOG(LogHktRpc, Log, TEXT("StreamSessionHandler destroyed. SessionId: %llu, GroupId: %d"), SessionId, GroupId);
 			if (GroupId != -1)
 			{
 				// 해당 패킷 타입의 세션 매니저를 통해 세션을 등록 해제합니다.
@@ -227,20 +236,15 @@ private:
 		// Trait에서 정의된 TPacket 타입을 인자로 받습니다.
 		void Write(const TPacket& Packet) override
 		{
-			// 이 RPC가 SyncGroup RPC일 경우에만 패킷을 전송합니다.
-			// Trait에 패킷을 응답으로 변환하는 로직을 추가하면 이 분기문도 제거할 수 있습니다.
-			if constexpr (std::is_same_v<TRpcTrait, HktRpc::FSyncGroupRpcTrait>)
-			{
-				typename TRpcTrait::TResponse Response;
-				*Response.mutable_packet() = Packet;
+			typename TRpcTrait::TResponse Response = TRpcTrait::CreateResponseFromPacket(Packet);
 
-				std::lock_guard<std::mutex> lock(QueueMutex);
-				OutgoingMessages.push(Response);
-				if (!bIsWriting)
-				{
-					bIsWriting = true;
-					Writer.Write(OutgoingMessages.front(), new FWriteOperation(this));
-				}
+			std::lock_guard<std::mutex> lock(QueueMutex);
+			OutgoingMessages.push(Response);
+			if (!bIsWriting)
+			{
+				UE_LOG(LogHktRpc, Verbose, TEXT("Writing packet to SessionId: %llu"), GetSessionId());
+				bIsWriting = true;
+				Writer.Write(OutgoingMessages.front(), new FWriteOperation(this));
 			}
 		}
 		uint64_t GetSessionId() const override { return SessionId; }
@@ -264,6 +268,7 @@ private:
 			{
 				if (!bOk)
 				{
+					UE_LOG(LogHktRpc, Warning, TEXT("AsyncOperation failed for SessionId: %llu. Deleting session."), Session->GetSessionId());
 					delete Session;
 				}
 				else
@@ -287,6 +292,7 @@ private:
 				new FStreamSessionHandler<TRpcTrait>(this->Session->Service, this->Session->CQ);
 				
 				this->Session->GroupId = this->Session->Request.group_id();
+				UE_LOG(LogHktRpc, Log, TEXT("New client connected. SessionId: %llu, GroupId: %d"), this->Session->GetSessionId(), this->Session->GroupId);
 				// 해당 패킷 타입의 세션 매니저를 통해 세션을 등록합니다.
 				TSessionManager<TPacket>::Get().RegisterSession(this->Session->GroupId, this->Session);
 			}
@@ -309,6 +315,7 @@ private:
 				{
 					this->Session->bIsWriting = false;
 				}
+				UE_LOG(LogHktRpc, Verbose, TEXT("Write complete for SessionId: %llu"), this->Session->GetSessionId());
 			}
 		};
 

@@ -4,6 +4,7 @@
 
 FHktRpcService::~FHktRpcService()
 {
+	UE_LOG(LogHktRpc, Log, TEXT("FHktRpcService shutting down."));
 	Server->Shutdown();
 	for (auto& cq : CQs)
 	{
@@ -31,6 +32,7 @@ void FHktRpcService::Run(const std::string& ServerAddress)
 	}
 
 	Server = Builder.BuildAndStart();
+	UE_LOG(LogHktRpc, Log, TEXT("FHktRpcService running on %s"), *FString(ServerAddress.c_str()));
 	
 	for (int i = 0; i < NumCores; ++i)
 	{
@@ -50,6 +52,7 @@ void FHktRpcService::HandleRpcs(int CQIndex)
 	bool bOk;
 	while (CQs[CQIndex]->Next(&Tag, &bOk))
 	{
+		UE_LOG(LogHktRpc, Verbose, TEXT("CQ %d: Handling RPC tag."), CQIndex);
 		auto* BaseHandler = static_cast<FRpcCallHandlerBase*>(Tag);
 		BaseHandler->Proceed(bOk);
 	}

@@ -1,4 +1,5 @@
 #include "HktGraph.h"
+#include "HktBehavior.h"
 
 struct FTagNode
 {
@@ -49,6 +50,7 @@ IHktBehavior& FHktGraph::AddBehavior(TUniquePtr<IHktBehavior>&& InBehavior)
 void FHktGraph::RemoveBehavior(FHktId InBehaviorId)
 {
 	check(Context);
+
 	TUniquePtr<IHktBehavior>* BehaviorPtr = Context->Behaviors.Find(InBehaviorId);
 	if (BehaviorPtr == nullptr)
 		return;

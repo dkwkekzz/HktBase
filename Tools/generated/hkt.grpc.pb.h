@@ -28,9 +28,6 @@
 
 namespace hkt {
 
-// gRPC 서비스 정의
-// ----------------------------------
-//
 class HktRpcService final {
  public:
   static constexpr char const* service_full_name() {
@@ -39,8 +36,7 @@ class HktRpcService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // 클라이언트가 그룹 동기화를 요청하고, 서버는 스트림을 반환합니다.
-    // 이 스트림을 통해 해당 그룹의 모든 BehaviorPacket이 전달됩니다.
+    // 그룹 동기화를 위한 스트리밍 RPC
     std::unique_ptr< ::grpc::ClientReaderInterface< ::hkt::SyncResponse>> SyncGroup(::grpc::ClientContext* context, const ::hkt::SyncRequest& request) {
       return std::unique_ptr< ::grpc::ClientReaderInterface< ::hkt::SyncResponse>>(SyncGroupRaw(context, request));
     }
@@ -50,8 +46,7 @@ class HktRpcService final {
     std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::hkt::SyncResponse>> PrepareAsyncSyncGroup(::grpc::ClientContext* context, const ::hkt::SyncRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::hkt::SyncResponse>>(PrepareAsyncSyncGroupRaw(context, request, cq));
     }
-    // 클라이언트가 게임 행동(생성, 제거 등)을 서버로 전송합니다.
-    // 서버는 이 요청을 받아 같은 그룹의 모든 클라이언트에게 브로드캐스팅합니다.
+    // 모든 Behavior 요청을 처리하는 단일 RPC
     virtual ::grpc::Status ExecuteBehavior(::grpc::ClientContext* context, const ::hkt::BehaviorRequest& request, ::google::protobuf::Empty* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncExecuteBehavior(::grpc::ClientContext* context, const ::hkt::BehaviorRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncExecuteBehaviorRaw(context, request, cq));
@@ -62,11 +57,9 @@ class HktRpcService final {
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // 클라이언트가 그룹 동기화를 요청하고, 서버는 스트림을 반환합니다.
-      // 이 스트림을 통해 해당 그룹의 모든 BehaviorPacket이 전달됩니다.
+      // 그룹 동기화를 위한 스트리밍 RPC
       virtual void SyncGroup(::grpc::ClientContext* context, const ::hkt::SyncRequest* request, ::grpc::ClientReadReactor< ::hkt::SyncResponse>* reactor) = 0;
-      // 클라이언트가 게임 행동(생성, 제거 등)을 서버로 전송합니다.
-      // 서버는 이 요청을 받아 같은 그룹의 모든 클라이언트에게 브로드캐스팅합니다.
+      // 모든 Behavior 요청을 처리하는 단일 RPC
       virtual void ExecuteBehavior(::grpc::ClientContext* context, const ::hkt::BehaviorRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ExecuteBehavior(::grpc::ClientContext* context, const ::hkt::BehaviorRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
@@ -130,11 +123,9 @@ class HktRpcService final {
    public:
     Service();
     virtual ~Service();
-    // 클라이언트가 그룹 동기화를 요청하고, 서버는 스트림을 반환합니다.
-    // 이 스트림을 통해 해당 그룹의 모든 BehaviorPacket이 전달됩니다.
+    // 그룹 동기화를 위한 스트리밍 RPC
     virtual ::grpc::Status SyncGroup(::grpc::ServerContext* context, const ::hkt::SyncRequest* request, ::grpc::ServerWriter< ::hkt::SyncResponse>* writer);
-    // 클라이언트가 게임 행동(생성, 제거 등)을 서버로 전송합니다.
-    // 서버는 이 요청을 받아 같은 그룹의 모든 클라이언트에게 브로드캐스팅합니다.
+    // 모든 Behavior 요청을 처리하는 단일 RPC
     virtual ::grpc::Status ExecuteBehavior(::grpc::ServerContext* context, const ::hkt::BehaviorRequest* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>

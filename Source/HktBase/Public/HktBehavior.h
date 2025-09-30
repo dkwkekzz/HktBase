@@ -7,7 +7,7 @@ class IHktBehavior
 {
 public:
 	virtual ~IHktBehavior() {}
-	virtual uint32 GetTypeId() const = 0;
+	virtual int32 GetTypeId() const = 0;
 	virtual FHktId GetSubjectId() const = 0;
 	virtual FHktId GetBehaviorId() const = 0;
 	virtual FHktTagContainer GetTags() const = 0;
@@ -20,10 +20,10 @@ public:
 class FBehaviorTypeIdGenerator
 {
 public:
-    static inline uint32 GetNextId()
+    static inline int32 GetNextId()
     {
         // 0은 유효하지 않은 값으로 사용될 수 있으므로 1부터 시작합니다.
-        static uint32 Counter = 1;
+        static int32 Counter = 0;
         return Counter++;
     }
 };
@@ -34,9 +34,9 @@ public:
  * @return 해당 타입의 고유 ID
  */
 template<typename T>
-inline uint32 GetBehaviorTypeId()
+inline int32 GetBehaviorTypeId()
 {
-    static const uint32 Id = FBehaviorTypeIdGenerator::GetNextId();
+    static const int32 Id = FBehaviorTypeIdGenerator::GetNextId();
     return Id;
 }
 
@@ -44,21 +44,18 @@ inline uint32 GetBehaviorTypeId()
  * @brief Behavior Trait의 정의를 통해 구체적인 Behavior를 생성하는 템플릿 클래스
  * @tparam TBehaviorTrait Behavior의 특성(패킷 타입 등)을 정의하는 Trait
  */
-template <typename TBehaviorTrait>
-class THktBehavior : public IHktBehavior
+template <typename TPacket>
+class HKTBASE_API THktBehavior : public IHktBehavior
 {
 public:
-    // Trait에 정의된 Packet 타입을 가져옵니다.
-    using PacketType = typename TBehaviorTrait::Packet;
-
-    THktBehavior(FHktId InBehaviorId, FHktId InSubjectId, const PacketType& InPacket)
-        : BehaviorId(InBehaviorId), SubjectId(InSubjectId)
+    THktBehavior(FHktId InBehaviorId, FHktId InSubjectId, const TPacket& InPacket)
+        : BehaviorId(InBehaviorId), SubjectId(InSubjectId), Packet(InPacket)
     {
     }
 
-    virtual uint32 GetTypeId() const override
+    virtual int32 GetTypeId() const override
     {
-        return GetBehaviorTypeId<TBehaviorTrait>();
+        return GetBehaviorTypeId<TPacket>();
     }
 
     virtual FHktId GetSubjectId() const override
@@ -76,10 +73,10 @@ public:
 		return FHktTagContainer();
     }
 
-    const PacketType& GetPacket() const { return Packet; }
+    const TPacket& GetPacket() const { return Packet; }
 
 protected:
     FHktId BehaviorId;
     FHktId SubjectId;
-    PacketType Packet;
+    TPacket Packet;
 };

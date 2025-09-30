@@ -4,87 +4,33 @@ import "google/protobuf/empty.proto";
 
 package hkt;
 
-// 게임 월드 내에서 사용될 공통 메시지
-// ----------------------------------
-
-// 3D 벡터
-message Vector {
-    float x = 1;
-    float y = 2;
-    float z = 3;
-}
-
-
-// Behavior Packet 종류
-// ----------------------------------
-
-message MovePacket {
-    int64 actor_id = 1; // 이동하는 액터의 ID
-    Vector new_location = 2; // 새로운 위치
-}
-
-message JumpPacket {
-    int64 actor_id = 1; // 점프하는 액터의 ID
-    float jump_force = 2; // 점프 힘
-}
-
-message AttackPacket {
-    int64 attacker_id = 1; // 공격자 ID
-    int64 target_id = 2; // 대상 ID
-    int32 damage = 3; // 데미지
-}
-
-// Behavior가 제거될 때 브로드캐스팅될 패킷
-message DestroyPacket {
-    int64 behavior_id = 1; // 제거될 Behavior의 고유 ID
-}
-
-
-// Behavior를 담는 컨테이너
-// ----------------------------------
-
-message BehaviorPacket {
-    int64 behavior_id = 1;      // 모든 Behavior를 식별하는 고유 ID
-    int64 owner_player_id = 2;  // 이 Behavior를 발생시킨 플레이어 ID
-
-    oneof packet {
-        MovePacket move_packet = 3;
-        JumpPacket jump_packet = 4;
-        AttackPacket attack_packet = 5;
-        DestroyPacket destroy_packet = 6;
-    }
-}
-
-
-// gRPC 서비스 정의
-// ----------------------------------
-
 service HktRpcService {
-    // 클라이언트가 그룹 동기화를 요청하고, 서버는 스트림을 반환합니다.
-    // 이 스트림을 통해 해당 그룹의 모든 BehaviorPacket이 전달됩니다.
+    // 그룹 동기화를 위한 스트리밍 RPC
     rpc SyncGroup(SyncRequest) returns (stream SyncResponse);
-
-    // 클라이언트가 게임 행동(생성, 제거 등)을 서버로 전송합니다.
-    // 서버는 이 요청을 받아 같은 그룹의 모든 클라이언트에게 브로드캐스팅합니다.
+    // 모든 Behavior 요청을 처리하는 단일 RPC
     rpc ExecuteBehavior(BehaviorRequest) returns (google.protobuf.Empty);
 }
 
-
-// gRPC RPC별 요청/응답 메시지
-// ----------------------------------
-
-// SyncGroup RPC
 message SyncRequest {
     int64 player_id = 1;
     int32 group_id = 2;
+}
+
+// 범용 Behavior 패킷. "Envelope Pattern"
+// 어떤 종류의 패킷인지(type_name)와 직렬화된 데이터(payload)를 담습니다.
+message BehaviorPacket {
+    int64 behavior_id = 1;
+    int64 owner_player_id = 2;
+    int32 behavior_type_id = 3;
+    bytes payload = 4;             // USTRUCT가 직렬화된 바이너리 데이터
+}
+
+message BehaviorRequest {
+    int32 group_id = 1;
+    BehaviorPacket packet = 2;
 }
 
 message SyncResponse {
     BehaviorPacket packet = 1;
 }
 
-// ExecuteBehavior RPC
-message BehaviorRequest {
-    int32 group_id = 1; // 어느 그룹에서 발생한 행동인지 식별
-    BehaviorPacket packet = 2;
-}

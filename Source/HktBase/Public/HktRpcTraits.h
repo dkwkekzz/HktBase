@@ -2,6 +2,7 @@
 
 #include "HktGrpc.h"
 #include "HktBehavior.h"
+#include "HktPacketTypes.h"
 
 // 이 파일은 proto에 정의된 각 rpc에 대한 메타데이터(타입, 함수 포인터 등)를 정의합니다.
 // 새로운 RPC가 추가될 때마다 이 파일에 해당 RPC의 Trait만 추가하면 됩니다.
@@ -40,41 +41,12 @@ namespace HktRpc
 		// gRPC AsyncService에 스트림 요청을 등록하는 함수의 포인터
 		// 서버 측에서 사용됩니다.
 		static constexpr auto RequestRpcFunc = &hkt::HktRpcService::AsyncService::RequestSyncGroup;
+
+		static TResponse CreateResponseFromPacket(const TPacket& Packet)
+		{
+			TResponse Response;
+			*Response.mutable_packet() = Packet;
+			return Response;
+		}
 	};
 }
-
-// 각 Behavior Packet에 대한 Trait
-// 서버 로직, 패킷 타입, 그리고 실제 Behavior 구현 클래스를 하나로 묶어 관리합니다.
-
-struct FMoveBehaviorTrait
-{
-	using Packet = hkt::MovePacket;
-	using Behavior = THktBehavior<FMoveBehaviorTrait>;
-	static constexpr auto CaseEnum = hkt::BehaviorPacket::kMovePacket;
-	// BehaviorPacket에서 실제 패킷을 추출하는 static 함수
-	static const Packet& GetPacketFrom(const hkt::BehaviorPacket& P) { return P.move_packet(); }
-};
-
-struct FJumpBehaviorTrait
-{
-	using Packet = hkt::JumpPacket;
-	using Behavior = THktBehavior<FJumpBehaviorTrait>;
-	static constexpr auto CaseEnum = hkt::BehaviorPacket::kJumpPacket;
-	static const Packet& GetPacketFrom(const hkt::BehaviorPacket& P) { return P.jump_packet(); }
-};
-
-struct FAttackBehaviorTrait
-{
-	using Packet = hkt::AttackPacket;
-	using Behavior = THktBehavior<FAttackBehaviorTrait>;
-	static constexpr auto CaseEnum = hkt::BehaviorPacket::kAttackPacket;
-	static const Packet& GetPacketFrom(const hkt::BehaviorPacket& P) { return P.attack_packet(); }
-};
-
-struct FDestroyBehaviorTrait
-{
-	using Packet = hkt::DestroyPacket;
-	using Behavior = THktBehavior<FDestroyBehaviorTrait>;
-	static constexpr auto CaseEnum = hkt::BehaviorPacket::kDestroyPacket;
-	static const Packet& GetPacketFrom(const hkt::BehaviorPacket& P) { return P.destroy_packet(); }
-};
