@@ -2,13 +2,13 @@
 
 struct FTagNode
 {
-	FGameplayTag Tag;
+	FHktTag Tag;
 	TArray<IHktBehavior*> BehaviorRefs;
 };
 
 struct FSubjectNode
 {
-	TMap<FGameplayTag, FTagNode> TagNodes;
+	TMap<FHktTag, FTagNode> TagNodes;
 };
 
 struct FHktGraph::FContext
@@ -31,8 +31,8 @@ IHktBehavior& FHktGraph::AddBehavior(TUniquePtr<IHktBehavior>&& InBehavior)
 	check(Context);
 
 	FSubjectNode& SubjectNode = Context->SubjectNodes.FindOrAdd(InBehavior->GetSubjectId());
-	FGameplayTagContainer Tags = InBehavior->GetTags();
-	for (FGameplayTag Tag : Tags)
+	FHktTagContainer Tags = InBehavior->GetTags();
+	for (const FHktTag& Tag : Tags)
 	{
 		FTagNode* TagNode = SubjectNode.TagNodes.Find(Tag);
 		if (TagNode == nullptr)
@@ -59,8 +59,8 @@ void FHktGraph::RemoveBehavior(FHktId InBehaviorId)
 		return;
 
 	bool bExist = false;
-	FGameplayTagContainer Tags = Behavior->GetTags();
-	for (FGameplayTag Tag : Tags)
+	FHktTagContainer Tags = Behavior->GetTags();
+	for (const FHktTag& Tag : Tags)
 	{
 		FTagNode* TagNode = SubjectNode->TagNodes.Find(Tag);
 		if (TagNode)

@@ -48,3 +48,4 @@ Thumbs.db
 # --- Custom Exceptions ---
 # Allow essential third-party binaries for gRPC, even if they are ignored globally.
 !/Source/ThirdParty/gRPC/bin/*
+*.generated.h

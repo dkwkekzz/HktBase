@@ -1,10 +1,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameplayTagContainer.h"
 #include "Delegates/Delegate.h"
 #include "Templates/Function.h"
+#include "HktTag.h"
 
-// HKT ½Ã½ºÅÛ¿¡¼­ »ç¿ëÇÏ´Â ID Å¸ÀÔ°ú À¯È¿ÇÏÁö ¾ÊÀº ID »ó¼ö Á¤ÀÇ
+// HKT ì‹œìŠ¤í…œì—ì„œ ì‚¬ìš©í•˜ëŠ” ID íƒ€ì…ê³¼ ìœ íš¨í•˜ì§€ ì•Šì€ ID ê°’ ì •ì˜
 using FHktId = int64;
 constexpr FHktId InvalidHktId = -1;

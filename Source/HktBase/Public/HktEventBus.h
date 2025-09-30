@@ -1,7 +1,7 @@
 /**
  * @file HktEventBus.h
- * @brief NodeIndex¿Í GameplayTag¸¦ Key·Î, TPayload Å¸ÀÔº° ÀÌº¥Æ®¸¦ °ü¸®ÇÏ´Â ¶ó¿ìÅÍ °´Ã¼ÀÔ´Ï´Ù.
- * @tparam TPayload ÀÌº¥Æ® ¹ß»ı ½Ã Àü´ŞÇÒ ÀÎÀÚÀÇ Å¸ÀÔÀÔ´Ï´Ù.
+ * @brief NodeIndexì™€ GameplayTagë¥¼ Keyë¡œ, TPayload íƒ€ì…ì˜ ì´ë²¤íŠ¸ë¥¼ ë°œí–‰í•˜ëŠ” ì´ë²¤íŠ¸ ë²„ìŠ¤ì…ë‹ˆë‹¤.
+ * @tparam TPayload ì´ë²¤íŠ¸ ë°œìƒ ì‹œ ì „ë‹¬ë  ë°ì´í„°ì˜ íƒ€ì…ì…ë‹ˆë‹¤.
  */
 
 #pragma once
@@ -9,32 +9,32 @@
 #include "HktDef.h"
 
  /**
-  * @brief NodeIndex¿Í GameplayTag¸¦ Key·Î, Æ¯Á¤ µ¥ÀÌÅÍ Å¸ÀÔ(TPayload)ÀÇ ÀÌº¥Æ®¸¦ ¶ó¿ìÆÃÇÏ´Â ½Ì±ÛÅæ Å¬·¡½ºÀÔ´Ï´Ù.
-  * GameplayTagÀÇ °èÃş ±¸Á¶¸¦ È°¿ëÇÏ¿© ´Ù¾çÇÑ ¹æ½ÄÀÇ ÀÌº¥Æ® ÀüÆÄ°¡ °¡´ÉÇÕ´Ï´Ù.
-  * @tparam TPayload ÀÌº¥Æ® ÆäÀÌ·Îµå·Î »ç¿ëÇÒ µ¥ÀÌÅÍ Å¸ÀÔÀÔ´Ï´Ù.
+  * @brief NodeIndexì™€ GameplayTagë¥¼ Keyë¡œ, íŠ¹ì • ë°ì´í„° íƒ€ì…(TPayload)ì˜ ì´ë²¤íŠ¸ë¥¼ ê´€ë¦¬í•˜ëŠ” ì‹±ê¸€í„´ í´ë˜ìŠ¤ì…ë‹ˆë‹¤.
+  * GameplayTagì˜ ê³„ì¸µì  êµ¬ì¡°ë¥¼ í™œìš©í•˜ì—¬ ìœ ì—°í•œ ì´ë²¤íŠ¸ êµ¬ë…ê³¼ ë°œí–‰ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.
+  * @tparam TPayload ì´ë²¤íŠ¸ í˜ì´ë¡œë“œë¡œ ì‚¬ìš©ë  ë°ì´í„° íƒ€ì…ì…ë‹ˆë‹¤.
   */
 template<typename TPayload>
 struct THktEventBus
 {
 public:
     /**
-     * @brief TPayload Å¸ÀÔÀÇ ÀÎÀÚ ÇÏ³ª¸¦ ¹Ş´Â ¸ÖÆ¼Ä³½ºÆ® µ¨¸®°ÔÀÌÆ®ÀÔ´Ï´Ù.
-     * const&·Î ÀÎÀÚ¸¦ Àü´ŞÇÏ¿© ºÒÇÊ¿äÇÑ º¹»ç¸¦ ¹æÁöÇÕ´Ï´Ù.
+     * @brief TPayload íƒ€ì…ì„ ì¸ìë¡œ í•˜ë‚˜ ë°›ëŠ” ë©€í‹°ìºìŠ¤íŠ¸ ë¸ë¦¬ê²Œì´íŠ¸ì…ë‹ˆë‹¤.
+     * const&ë¡œ ì¸ìë¥¼ ì „ë‹¬í•˜ì—¬ ë¶ˆí•„ìš”í•œ ë³µì‚¬ë¥¼ ë°©ì§€í•©ë‹ˆë‹¤.
      */
     DECLARE_MULTICAST_DELEGATE_OneParam(FBehaviorEvent, const TPayload& /* Payload */);
 
     /**
-     * @brief Æ¯Á¤ ³ëµå¿¡ ¼ÓÇÑ ÀÌº¥Æ®µéÀ» GameplayTag¸¦ Å°·Î ÇÏ¿© °ü¸®ÇÏ´Â ¶ó¿ìÅÍÀÔ´Ï´Ù.
-     * TArray ´ë½Å TMapÀ» »ç¿ëÇÏ¿© Æ¯Á¤ ÅÂ±×¿¡ ´ëÇÑ ÀÌº¥Æ® Á¢±ÙÀ» O(1)¿¡ °¡±õ°Ô ÃÖÀûÈ­ÇÕ´Ï´Ù.
+     * @brief íŠ¹ì • ë…¸ë“œì— ëŒ€í•œ ì´ë²¤íŠ¸ë“¤ì„ GameplayTagë¥¼ í‚¤ë¡œ í•˜ì—¬ ì €ì¥í•˜ëŠ” ë¼ìš°í„°ì…ë‹ˆë‹¤.
+     * TArray ëŒ€ì‹  TMapì„ ì‚¬ìš©í•˜ì—¬ íŠ¹ì • íƒœê·¸ì— ëŒ€í•œ ì´ë²¤íŠ¸ ì ‘ê·¼ì„ O(1)ì— ê°€ê¹ê²Œ ìµœì í™”í•©ë‹ˆë‹¤.
      */
     struct FEventRouter
     {
-        TMap<FGameplayTag, FBehaviorEvent> Events;
+        TMap<FHktTag, FBehaviorEvent> Events;
     };
 
     /**
-     * @brief EventBusÀÇ ½Ì±ÛÅæ ÀÎ½ºÅÏ½º¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
-     * @return THktEventBusÀÇ ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+     * @brief EventBusì˜ ì‹±ê¸€í„´ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
+     * @return THktEventBusì˜ ì‹±ê¸€í„´ ì¸ìŠ¤í„´ìŠ¤
      */
     static THktEventBus& Get()
     {
@@ -43,40 +43,40 @@ public:
     }
 
     /**
-     * @brief Æ¯Á¤ ÅÂ±×¿¡ ´ëÇÑ ÀÌº¥Æ® µ¨¸®°ÔÀÌÆ®¸¦ °¡Á®¿É´Ï´Ù. ÀÌº¥Æ® ¹ÙÀÎµù(Bind) ½Ã »ç¿ëµË´Ï´Ù.
-     * ÇØ´ç ÅÂ±×ÀÇ ÀÌº¥Æ®°¡ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é »õ·Î »ı¼ºÇÏ¿© ¹İÈ¯ÇÕ´Ï´Ù.
-     * @param NodeIndex ÀÌº¥Æ®¸¦ ½Äº°ÇÏ´Â ³ëµåÀÇ ÀÎµ¦½ºÀÔ´Ï´Ù.
-     * @param Tag ¹ÙÀÎµùÇÒ ÀÌº¥Æ®ÀÇ Á¤È®ÇÑ GameplayTagÀÔ´Ï´Ù.
-     * @return ÇØ´ç ÅÂ±×¿¡ ´ëÇÑ FBehaviorEvent µ¨¸®°ÔÀÌÆ®ÀÇ ·¹ÆÛ·±½ºÀÔ´Ï´Ù.
+     * @brief íŠ¹ì • íƒœê·¸ì— ëŒ€í•œ ì´ë²¤íŠ¸ ë¸ë¦¬ê²Œì´íŠ¸ë¥¼ ì–»ìŠµë‹ˆë‹¤. ì´ë²¤íŠ¸ ë°”ì¸ë“œ(Bind) ì‹œ ì‚¬ìš©ë©ë‹ˆë‹¤.
+     * í•´ë‹¹ íƒœê·¸ì˜ ì´ë²¤íŠ¸ê°€ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ìƒˆë¡œ ìƒì„±í•˜ì—¬ ë°˜í™˜í•©ë‹ˆë‹¤.
+     * @param NodeIndex ì´ë²¤íŠ¸ë¥¼ êµ¬ë…í•˜ëŠ” ë…¸ë“œì˜ ì¸ë±ìŠ¤ì…ë‹ˆë‹¤.
+     * @param Tag ë°”ì¸ë”©í•  ì´ë²¤íŠ¸ì˜ ì •í™•í•œ GameplayTagì…ë‹ˆë‹¤.
+     * @return í•´ë‹¹ íƒœê·¸ì— ëŒ€í•œ FBehaviorEvent ë¸ë¦¬ê²Œì´íŠ¸ì˜ ë ˆí¼ëŸ°ìŠ¤ì…ë‹ˆë‹¤.
      */
-    FBehaviorEvent& GetEvent(FHktId NodeIndex, const FGameplayTag& Tag)
+    FBehaviorEvent& GetEvent(FHktId NodeIndex, const FHktTag& Tag)
     {
-        // FindOrAdd¸¦ »ç¿ëÇÏ¿© ³ëµå¿¡ ÇØ´çÇÏ´Â ¶ó¿ìÅÍ¸¦ Ã£°Å³ª ¾øÀ¸¸é Ãß°¡ÇÕ´Ï´Ù.
+        // FindOrAddë¥¼ ì‚¬ìš©í•˜ì—¬ ë…¸ë“œì— í•´ë‹¹í•˜ëŠ” ë¼ìš°í„°ë¥¼ ì°¾ê±°ë‚˜ ìƒˆë¡œ ì¶”ê°€í•©ë‹ˆë‹¤.
         FEventRouter& Router = EventRouterMap.FindOrAdd(NodeIndex);
-        // ¶ó¿ìÅÍ ³»¿¡¼­ Æ¯Á¤ ÅÂ±×¿¡ ÇØ´çÇÏ´Â ÀÌº¥Æ®¸¦ Ã£°Å³ª ¾øÀ¸¸é Ãß°¡ÇÕ´Ï´Ù.
+        // ë¼ìš°í„° ë‚´ì—ì„œ íŠ¹ì • íƒœê·¸ì— í•´ë‹¹í•˜ëŠ” ì´ë²¤íŠ¸ë¥¼ ì°¾ê±°ë‚˜ ìƒˆë¡œ ì¶”ê°€í•©ë‹ˆë‹¤.
         return Router.Events.FindOrAdd(Tag);
     }
 
     FORCEINLINE FBehaviorEvent& GetEvent(FHktId NodeIndex)
     {
-        return GetEvent(NodeIndex, FGameplayTag());
+        return GetEvent(NodeIndex, FHktTag());
     }
 
     /**
-     * @brief ÁöÁ¤µÈ ÅÂ±×¿Í 'Á¤È®È÷' ÀÏÄ¡ÇÏ´Â ¸®½º³Ê¿¡°Ô¸¸ ÀÌº¥Æ®¸¦ ÀüÆÄ(Broadcast)ÇÕ´Ï´Ù.
-     * @param NodeIndex ÀÌº¥Æ®°¡ ¹ß»ıÇÑ ³ëµåÀÇ ÀÎµ¦½ºÀÔ´Ï´Ù.
-     * @param Tag ÀüÆÄÇÒ ÀÌº¥Æ®ÀÇ GameplayTagÀÔ´Ï´Ù.
-     * @param Payload ÀÌº¥Æ®¿Í ÇÔ²² Àü´ŞÇÒ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+     * @brief ì§€ì •ëœ íƒœê·¸ì— 'ì •í™•íˆ' ì¼ì¹˜í•˜ëŠ” êµ¬ë…ìì—ê²Œë§Œ ì´ë²¤íŠ¸ë¥¼ ë°œí–‰(Broadcast)í•©ë‹ˆë‹¤.
+     * @param NodeIndex ì´ë²¤íŠ¸ê°€ ë°œìƒí•œ ë…¸ë“œì˜ ì¸ë±ìŠ¤ì…ë‹ˆë‹¤.
+     * @param Tag ë°œí–‰í•  ì´ë²¤íŠ¸ì˜ GameplayTagì…ë‹ˆë‹¤.
+     * @param Payload ì´ë²¤íŠ¸ì™€ í•¨ê»˜ ì „ë‹¬ë  ë°ì´í„°ì…ë‹ˆë‹¤.
      */
-    void Broadcast(FHktId NodeIndex, const FGameplayTag& Tag, const TPayload& Payload)
+    void Broadcast(FHktId NodeIndex, const FHktTag& Tag, const TPayload& Payload)
     {
-        // ÇØ´ç ³ëµå¿¡ ¶ó¿ìÅÍ°¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎÇÕ´Ï´Ù.
+        // í•´ë‹¹ ë…¸ë“œì— ë¼ìš°í„°ê°€ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
         if (FEventRouter* Router = EventRouterMap.Find(NodeIndex))
         {
-            // ¶ó¿ìÅÍ ³»¿¡¼­ Á¤È®È÷ ÀÏÄ¡ÇÏ´Â ÅÂ±×ÀÇ ÀÌº¥Æ®¸¦ Ã£½À´Ï´Ù.
+            // ë¼ìš°í„° ë‚´ì—ì„œ ì •í™•íˆ ì¼ì¹˜í•˜ëŠ” íƒœê·¸ì˜ ì´ë²¤íŠ¸ë¥¼ ì°¾ìŠµë‹ˆë‹¤.
             if (FBehaviorEvent* Event = Router->Events.Find(Tag))
             {
-                // µ¨¸®°ÔÀÌÆ®¿¡ ¹ÙÀÎµùµÈ ÇÔ¼ö°¡ ÀÖ´ÂÁö È®ÀÎ ÈÄ ÀÌº¥Æ®¸¦ ÀüÆÄÇÕ´Ï´Ù.
+                // ë¸ë¦¬ê²Œì´íŠ¸ì— ë°”ì¸ë“œëœ í•¨ìˆ˜ê°€ ìˆëŠ”ì§€ í™•ì¸ í›„ ì´ë²¤íŠ¸ë¥¼ ë°œí–‰í•©ë‹ˆë‹¤.
                 if (Event->IsBound())
                 {
                     Event->Broadcast(Payload);
@@ -86,15 +86,15 @@ public:
     }
 
 private:
-    // private »ı¼ºÀÚ·Î ½Ì±ÛÅæ ÆĞÅÏÀ» °­Á¦ÇÕ´Ï´Ù.
+    // private ìƒì„±ìë¡œ ì‹±ê¸€í„´ íŒ¨í„´ì„ ìœ ì§€í•©ë‹ˆë‹¤.
     THktEventBus() = default;
     ~THktEventBus() = default;
     THktEventBus(const THktEventBus&) = delete;
     THktEventBus& operator=(const THktEventBus&) = delete;
 
     /**
-     * @brief NodeIndex¸¦ Å°·Î, FEventRouter¸¦ °ªÀ¸·Î °¡Áö´Â ¸ÊÀÔ´Ï´Ù.
-     * °¢ ³ëµå(¿¹: Æ¯Á¤ Ä³¸¯ÅÍ³ª ¾×ÅÍ)º°·Î µ¶¸³ÀûÀÎ ÀÌº¥Æ® ¶ó¿ìÅÍ¸¦ °ü¸®ÇÕ´Ï´Ù.
+     * @brief NodeIndexë¥¼ í‚¤ë¡œ, FEventRouterë¥¼ ê°’ìœ¼ë¡œ í•˜ëŠ” ë§µì…ë‹ˆë‹¤.
+     * ê° ë…¸ë“œ(ì˜ˆ: íŠ¹ì • ìºë¦­í„°ë‚˜ ê°ì²´)ë³„ë¡œ ë…ë¦½ì ì¸ ì´ë²¤íŠ¸ ë¼ìš°í„°ë¥¼ ê´€ë¦¬í•©ë‹ˆë‹¤.
      */
     TMap<FHktId, FEventRouter> EventRouterMap;
 };

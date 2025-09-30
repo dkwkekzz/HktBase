@@ -10,28 +10,28 @@ public:
 	virtual uint32 GetTypeId() const = 0;
 	virtual FHktId GetSubjectId() const = 0;
 	virtual FHktId GetBehaviorId() const = 0;
-	virtual FGameplayTagContainer GetTags() const = 0;
+	virtual FHktTagContainer GetTags() const = 0;
 };
 
 
 /**
- * @brief Behavior Å¸ÀÔº°·Î °íÀ¯ ID¸¦ »ı¼ºÇÏ´Â Å¬·¡½º
+ * @brief Behavior íƒ€ì…ë³„ë¡œ ê³ ìœ  IDë¥¼ ìƒì„±í•˜ëŠ” í´ë˜ìŠ¤
  */
 class FBehaviorTypeIdGenerator
 {
 public:
     static inline uint32 GetNextId()
     {
-        // 0Àº À¯È¿ÇÏÁö ¾ÊÀº °ªÀ¸·Î »ç¿ëµÉ ¼ö ÀÖÀ¸¹Ç·Î 1ºÎÅÍ ½ÃÀÛÇÕ´Ï´Ù.
+        // 0ì€ ìœ íš¨í•˜ì§€ ì•Šì€ ê°’ìœ¼ë¡œ ì‚¬ìš©ë  ìˆ˜ ìˆìœ¼ë¯€ë¡œ 1ë¶€í„° ì‹œì‘í•©ë‹ˆë‹¤.
         static uint32 Counter = 1;
         return Counter++;
     }
 };
 
 /**
- * @brief ÅÛÇÃ¸´À» »ç¿ëÇÏ¿© °¢ Behavior µ¥ÀÌÅÍ Å¸ÀÔ¿¡ ´ëÇÑ °íÀ¯ ID¸¦ ÄÄÆÄÀÏ Å¸ÀÓ¿¡ ÇÒ´çÇÕ´Ï´Ù.
- * @tparam T USTRUCT·Î Á¤ÀÇµÈ µ¥ÀÌÅÍ Å¸ÀÔ
- * @return ÇØ´ç Å¸ÀÔÀÇ °íÀ¯ ID
+ * @brief í…œí”Œë¦¿ì„ ì‚¬ìš©í•˜ì—¬ ê° Behavior êµ¬ì¡°ì²´ íƒ€ì…ì— ê³ ìœ í•œ íƒ€ì… IDë¥¼ ì»´íŒŒì¼ íƒ€ì„ì— í• ë‹¹í•©ë‹ˆë‹¤.
+ * @tparam T USTRUCTìœ¼ë¡œ ì •ì˜ëœ êµ¬ì¡°ì²´ íƒ€ì…
+ * @return í•´ë‹¹ íƒ€ì…ì˜ ê³ ìœ  ID
  */
 template<typename T>
 inline uint32 GetBehaviorTypeId()
@@ -41,14 +41,14 @@ inline uint32 GetBehaviorTypeId()
 }
 
 /**
- * @brief Behavior Trait¸¦ ±â¹İÀ¸·Î °øÅë ·ÎÁ÷À» ±¸ÇöÇÏ´Â ÅÛÇÃ¸´ Å¬·¡½º
- * @tparam TBehaviorTrait BehaviorÀÇ Æ¯¼º(ÆĞÅ¶ Å¸ÀÔ µî)À» Á¤ÀÇÇÏ´Â Trait
+ * @brief Behavior Traitì˜ ì •ì˜ë¥¼ í†µí•´ êµ¬ì²´ì ì¸ Behaviorë¥¼ ìƒì„±í•˜ëŠ” í…œí”Œë¦¿ í´ë˜ìŠ¤
+ * @tparam TBehaviorTrait Behaviorì˜ íŠ¹ì„±(íŒ¨í‚· íƒ€ì… ë“±)ì„ ì •ì˜í•˜ëŠ” Trait
  */
 template <typename TBehaviorTrait>
 class THktBehavior : public IHktBehavior
 {
 public:
-    // Trait¿¡ Á¤ÀÇµÈ Packet Å¸ÀÔÀ» °¡Á®¿É´Ï´Ù.
+    // Traitì— ì •ì˜ëœ Packet íƒ€ì…ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
     using PacketType = typename TBehaviorTrait::Packet;
 
     THktBehavior(FHktId InBehaviorId, FHktId InSubjectId, const PacketType& InPacket)
@@ -71,9 +71,9 @@ public:
         return BehaviorId;
     }
 
-    virtual FGameplayTagContainer GetTags() const override
+    virtual FHktTagContainer GetTags() const override
     {
-		return FGameplayTagContainer();
+		return FHktTagContainer();
     }
 
     const PacketType& GetPacket() const { return Packet; }

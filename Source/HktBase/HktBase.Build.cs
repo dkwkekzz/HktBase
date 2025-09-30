@@ -14,7 +14,6 @@ public class HktBase : ModuleRules
             new string[]
             {
                 "Core",
-                "GameplayTags",
                 "gRPC"
             }
         );
