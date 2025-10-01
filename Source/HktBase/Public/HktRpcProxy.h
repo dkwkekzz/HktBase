@@ -165,7 +165,7 @@ public:
 	~FHktRpcProxy();
 
 	void ExecuteBehavior(int64 GroupId, int64 SubjectId, int32 BehaviorTypeId, const TArray<uint8>& Bytes);
-    void SyncGroup(int64 SubjectId, int64 GroupId, TFunction<void(TUniquePtr<IHktBehavior>)> Callback);
+    void SyncGroup(int64 PlayerId, int64 GroupId, TFunction<void(TUniquePtr<IHktBehavior>)> Callback);
 
 private:
 	// CompletionQueue를 폴링하고 콜백을 실행하는 워커 스레드 함수

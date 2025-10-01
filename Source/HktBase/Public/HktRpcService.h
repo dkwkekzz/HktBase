@@ -228,6 +228,16 @@ private:
 			UE_LOG(LogHktRpc, Log, TEXT("StreamSessionHandler destroyed. SessionId: %llu, GroupId: %d"), SessionId, GroupId);
 			if (GroupId != -1)
 			{
+				//TPacket DisconnectPacket;
+				//// 서버가 보내는 시스템 메시지이므로 owner_player_id는 0 또는 다른 특정 ID로 설정할 수 있습니다.
+				//DisconnectPacket.set_owner_player_id(0);
+				//
+				//// DestroyPacket을 사용하여 접속이 끊긴 플레이어의 ID를 전파합니다.
+				//hkt::DestroyPacket* Destroy = DisconnectPacket.mutable_destroy_packet();
+				//Destroy->set_behavior_id(PlayerId);
+				//
+				//TSessionManager<TPacket>::Get().BroadcastToGroup(GroupId, DisconnectPacket);
+
 				// 해당 패킷 타입의 세션 매니저를 통해 세션을 등록 해제합니다.
 				TSessionManager<TPacket>::Get().UnregisterSession(GroupId, SessionId);
 			}

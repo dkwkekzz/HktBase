@@ -11,6 +11,7 @@ public:
 	virtual FHktId GetSubjectId() const = 0;
 	virtual FHktId GetBehaviorId() const = 0;
 	virtual FHktTagContainer GetTags() const = 0;
+    virtual FPrimaryAssetId GetViewAssetId() const = 0;
 };
 
 
@@ -71,6 +72,11 @@ public:
     virtual FHktTagContainer GetTags() const override
     {
 		return FHktTagContainer();
+    }
+
+    virtual FPrimaryAssetId GetViewAssetId() const override
+    {
+		return Packet.GetViewAssetId();
     }
 
     const TPacket& GetPacket() const { return Packet; }

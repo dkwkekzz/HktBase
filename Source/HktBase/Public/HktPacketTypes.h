@@ -11,6 +11,12 @@ struct FHktPacketBase
     GENERATED_BODY()
 
     virtual ~FHktPacketBase() = default;
+
+    virtual FPrimaryAssetId GetViewAssetId() const 
+    {
+        //return FPrimaryAssetId(FPrimaryAssetType("HktDataAsset"), FName(TEXT("Unknown")));
+        return FPrimaryAssetId();
+    }
 };
 
 // --- 실제 게임 로직 패킷들을 USTRUCT로 정의 ---

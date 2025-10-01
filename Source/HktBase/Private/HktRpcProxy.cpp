@@ -27,6 +27,7 @@ void FHktRpcProxy::ExecuteBehavior(int64 GroupId, int64 SubjectId, int32 Behavio
 	UE_LOG(LogHktRpc, Log, TEXT("Calling ExecuteBehavior for GroupId: %lld"), GroupId);
 
 	hkt::BehaviorPacket PbPacket;
+	// TODO: 이름 변경 작업 필요.
 	PbPacket.set_owner_player_id(SubjectId);
 	PbPacket.set_behavior_id(0);
 	PbPacket.set_behavior_type_id(BehaviorTypeId);
@@ -42,11 +43,11 @@ void FHktRpcProxy::ExecuteBehavior(int64 GroupId, int64 SubjectId, int32 Behavio
 		});
 }
 
-void FHktRpcProxy::SyncGroup(int64 SubjectId, int64 GroupId, TFunction<void(TUniquePtr<IHktBehavior>)> Callback)
+void FHktRpcProxy::SyncGroup(int64 PlayerId, int64 GroupId, TFunction<void(TUniquePtr<IHktBehavior>)> Callback)
 {
-	UE_LOG(LogHktRpc, Log, TEXT("Calling SyncGroup for PlayerId: %lld, GroupId: %lld"), SubjectId, GroupId);
+	UE_LOG(LogHktRpc, Log, TEXT("Calling SyncGroup for PlayerId: %lld, GroupId: %lld"), PlayerId, GroupId);
 	hkt::SyncRequest Request;
-	Request.set_player_id(SubjectId);
+	Request.set_player_id(PlayerId);
 	Request.set_group_id(GroupId);
     CallStream<HktRpc::FSyncGroupRpcTrait>(Request,
         [Callback](const grpc::Status& Status, const hkt::SyncResponse& Response)
