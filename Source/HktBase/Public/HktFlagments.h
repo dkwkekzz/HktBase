@@ -1,16 +1,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "HktBehavior.h"
-#include "HktPacketTypes.generated.h"
-
+#include "HktFlagments.generated.h"
+  
 // 모든 패킷 구조체의 기반이 될 기본 구조체 (선택사항이지만 좋은 습관입니다)
 USTRUCT(BlueprintType)
-struct FHktPacketBase
+struct FHktFlagmentBase
 {
     GENERATED_BODY()
 
-    virtual ~FHktPacketBase() = default;
+    virtual ~FHktFlagmentBase() = default;
 
     virtual FPrimaryAssetId GetViewAssetId() const 
     {
@@ -22,7 +21,22 @@ struct FHktPacketBase
 // --- 실제 게임 로직 패킷들을 USTRUCT로 정의 ---
 
 USTRUCT(BlueprintType)
-struct FMovePacket : public FHktPacketBase
+struct FDestroyFlagment : public FHktFlagmentBase
+{
+    GENERATED_BODY()
+};
+
+USTRUCT(BlueprintType)
+struct FSampleFlagment : public FHktFlagmentBase
+{
+    GENERATED_BODY()
+
+    UPROPERTY(BlueprintReadWrite)
+    FString Message;
+};
+
+USTRUCT(BlueprintType)
+struct FMoveFlagment : public FHktFlagmentBase
 {
     GENERATED_BODY()
 
@@ -34,7 +48,7 @@ struct FMovePacket : public FHktPacketBase
 };
 
 USTRUCT(BlueprintType)
-struct FJumpPacket : public FHktPacketBase
+struct FJumpFlagment : public FHktFlagmentBase
 {
     GENERATED_BODY()
 
@@ -43,7 +57,7 @@ struct FJumpPacket : public FHktPacketBase
 };
 
 USTRUCT(BlueprintType)
-struct FAttackPacket : public FHktPacketBase
+struct FAttackFlagment : public FHktFlagmentBase
 {
     GENERATED_BODY()
 
@@ -52,13 +66,4 @@ struct FAttackPacket : public FHktPacketBase
 
     UPROPERTY(BlueprintReadWrite)
     int64 TargetActorId;
-};
-
-USTRUCT(BlueprintType)
-struct FDestroyPacket : public FHktPacketBase
-{
-    GENERATED_BODY()
-
-    UPROPERTY(BlueprintReadWrite)
-    int64 BehaviorIdToDestroy;
 };

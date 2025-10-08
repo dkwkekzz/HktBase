@@ -1,7 +1,4 @@
-#include "HktBase.h"
-#include "HktDef.h"
-
-DEFINE_LOG_CATEGORY(LogHktRpc);
+#include "HktBaseModule.h"
 
 #define LOCTEXT_NAMESPACE "FHktBaseModule"
 

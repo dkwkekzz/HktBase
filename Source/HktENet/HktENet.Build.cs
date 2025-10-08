@@ -1,11 +1,10 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 using UnrealBuildTool;
-using System.IO;
 
-public class HktBase : ModuleRules
+public class HktENet : ModuleRules
 {
-    public HktBase(ReadOnlyTargetRules Target) : base(Target)
+    public HktENet(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
@@ -13,7 +12,7 @@ public class HktBase : ModuleRules
             new string[]
             {
                 "Core",
-                "CoreUObject"
+                "ENet"
             }
         );
     }

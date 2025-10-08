@@ -11,7 +11,9 @@ public:
 	~FHktGraph();
 
 	IHktBehavior& AddBehavior(TUniquePtr<IHktBehavior>&& InBehavior);
+	const IHktBehavior* FindBehavior(FHktId InBehaviorId) const;
 	void RemoveBehavior(FHktId InBehaviorId);
+	void RemoveBehavior(const IHktBehavior& InBehavior);
 
 private:
 	struct FContext;

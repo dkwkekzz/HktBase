@@ -45,18 +45,20 @@ inline int32 GetBehaviorTypeId()
  * @brief Behavior Trait의 정의를 통해 구체적인 Behavior를 생성하는 템플릿 클래스
  * @tparam TBehaviorTrait Behavior의 특성(패킷 타입 등)을 정의하는 Trait
  */
-template <typename TPacket>
+template <typename TFlagment>
 class HKTBASE_API THktBehavior : public IHktBehavior
 {
 public:
-    THktBehavior(FHktId InBehaviorId, FHktId InSubjectId, const TPacket& InPacket)
-        : BehaviorId(InBehaviorId), SubjectId(InSubjectId), Packet(InPacket)
+    using FlagmentType = TFlagment;
+
+    THktBehavior(FHktId InBehaviorId, FHktId InSubjectId, const TFlagment& InFlagment)
+        : BehaviorId(InBehaviorId), SubjectId(InSubjectId), Flagment(InFlagment)
     {
     }
 
     virtual int32 GetTypeId() const override
     {
-        return GetBehaviorTypeId<TPacket>();
+        return GetBehaviorTypeId<TFlagment>();
     }
 
     virtual FHktId GetSubjectId() const override
@@ -76,13 +78,13 @@ public:
 
     virtual FPrimaryAssetId GetViewAssetId() const override
     {
-		return Packet.GetViewAssetId();
+		return Flagment.GetViewAssetId();
     }
 
-    const TPacket& GetPacket() const { return Packet; }
+    const TFlagment& GetFlagment() const { return Flagment; }
 
 protected:
     FHktId BehaviorId;
     FHktId SubjectId;
-    TPacket Packet;
+    TFlagment Flagment;
 };

@@ -47,36 +47,50 @@ IHktBehavior& FHktGraph::AddBehavior(TUniquePtr<IHktBehavior>&& InBehavior)
 	return *Behavior;
 }
 
+const IHktBehavior* FHktGraph::FindBehavior(FHktId InBehaviorId) const
+{
+	check(Context);
+
+	const TUniquePtr<IHktBehavior>* BehaviorPtr = Context->Behaviors.Find(InBehaviorId);
+	if (BehaviorPtr == nullptr)
+		return nullptr;
+
+	return BehaviorPtr->Get();
+}
+
 void FHktGraph::RemoveBehavior(FHktId InBehaviorId)
 {
 	check(Context);
 
-	TUniquePtr<IHktBehavior>* BehaviorPtr = Context->Behaviors.Find(InBehaviorId);
+	const TUniquePtr<IHktBehavior>* BehaviorPtr = Context->Behaviors.Find(InBehaviorId);
 	if (BehaviorPtr == nullptr)
 		return;
 
-	TUniquePtr<IHktBehavior>& Behavior = *BehaviorPtr;
-	FSubjectNode* SubjectNode = Context->SubjectNodes.Find(Behavior->GetSubjectId());
+	RemoveBehavior(**BehaviorPtr);
+}
+
+void FHktGraph::RemoveBehavior(const IHktBehavior& InBehavior)
+{
+	FSubjectNode* SubjectNode = Context->SubjectNodes.Find(InBehavior.GetSubjectId());
 	if (SubjectNode == nullptr)
 		return;
 
 	bool bExist = false;
-	FHktTagContainer Tags = Behavior->GetTags();
+	FHktTagContainer Tags = InBehavior.GetTags();
 	for (const FHktTag& Tag : Tags)
 	{
 		FTagNode* TagNode = SubjectNode->TagNodes.Find(Tag);
 		if (TagNode)
 		{
-			TagNode->BehaviorRefs.Remove(Behavior.Get());
+			TagNode->BehaviorRefs.Remove(const_cast<IHktBehavior*>(&InBehavior));
 			bExist = true;
 		}
 	}
 
 	if (bExist == false)
 	{
-		Context->SubjectNodes.Remove(Behavior->GetSubjectId());
+		Context->SubjectNodes.Remove(InBehavior.GetSubjectId());
 	}
 
-	Context->Behaviors.Remove(InBehaviorId);
-
+	Context->Behaviors.Remove(InBehavior.GetBehaviorId());
 }

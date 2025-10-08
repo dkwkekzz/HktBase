@@ -23,7 +23,6 @@ public:
         FStructOnScope StructOnScope(TBaseStructure<T>::Get());
         *reinterpret_cast<T*>(StructOnScope.GetStructMemory()) = InStruct;
 
-        // UStruct::SerializeTaggedProperties는 리플렉션 기반으로 직렬화 수행
         StructOnScope.GetStruct()->SerializeTaggedProperties(Writer, StructOnScope.GetStructMemory(), nullptr, nullptr);
 
         return OutBytes;
