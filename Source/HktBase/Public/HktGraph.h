@@ -14,6 +14,7 @@ public:
 	const IHktBehavior* FindBehavior(FHktId InBehaviorId) const;
 	void RemoveBehavior(FHktId InBehaviorId);
 	void RemoveBehavior(const IHktBehavior& InBehavior);
+	void RemoveSubject(FHktId InSubjectId);
 
 private:
 	struct FContext;

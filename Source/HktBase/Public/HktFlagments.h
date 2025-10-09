@@ -11,20 +11,10 @@ struct FHktFlagmentBase
 
     virtual ~FHktFlagmentBase() = default;
 
-    virtual FPrimaryAssetId GetViewAssetId() const 
-    {
-        //return FPrimaryAssetId(FPrimaryAssetType("HktDataAsset"), FName(TEXT("Unknown")));
-        return FPrimaryAssetId();
-    }
+    virtual FName GetAssetName() const { return NAME_None; }
 };
 
 // --- 실제 게임 로직 패킷들을 USTRUCT로 정의 ---
-
-USTRUCT(BlueprintType)
-struct FDestroyFlagment : public FHktFlagmentBase
-{
-    GENERATED_BODY()
-};
 
 USTRUCT(BlueprintType)
 struct FSampleFlagment : public FHktFlagmentBase
@@ -32,7 +22,7 @@ struct FSampleFlagment : public FHktFlagmentBase
     GENERATED_BODY()
 
     UPROPERTY(BlueprintReadWrite)
-    FString Message;
+    FString StrData;
 };
 
 USTRUCT(BlueprintType)

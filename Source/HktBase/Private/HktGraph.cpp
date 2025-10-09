@@ -7,8 +7,13 @@ struct FTagNode
 	TArray<IHktBehavior*> BehaviorRefs;
 };
 
+/** 
+* subject������ ������ �����.
+* �� ������ Ŭ�� ���� ������ �°� �����Ѵ�.
+ */
 struct FSubjectNode
 {
+	TArray<TUniquePtr<IHktBehavior>> Behaviors;
 	TMap<FHktTag, FTagNode> TagNodes;
 };
 
@@ -93,4 +98,9 @@ void FHktGraph::RemoveBehavior(const IHktBehavior& InBehavior)
 	}
 
 	Context->Behaviors.Remove(InBehavior.GetBehaviorId());
+}
+
+void FHktGraph::RemoveSubject(FHktId InSubjectId)
+{
+	Context->SubjectNodes.Remove(InSubjectId);
 }

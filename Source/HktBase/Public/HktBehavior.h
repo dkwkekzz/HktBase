@@ -11,7 +11,7 @@ public:
 	virtual FHktId GetSubjectId() const = 0;
 	virtual FHktId GetBehaviorId() const = 0;
 	virtual FHktTagContainer GetTags() const = 0;
-    virtual FPrimaryAssetId GetViewAssetId() const = 0;
+    virtual FName GetAssetName() const = 0;
 };
 
 
@@ -76,12 +76,12 @@ public:
 		return FHktTagContainer();
     }
 
-    virtual FPrimaryAssetId GetViewAssetId() const override
+    virtual FName GetAssetName() const override
     {
-		return Flagment.GetViewAssetId();
+		return Flagment.GetAssetName();
     }
 
-    const TFlagment& GetFlagment() const { return Flagment; }
+    FORCEINLINE const TFlagment& GetFlagment() const { return Flagment; }
 
 protected:
     FHktId BehaviorId;

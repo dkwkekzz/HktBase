@@ -14,13 +14,22 @@ class HKTBASE_API FHktBehaviorFactory
 {
 public:
     template<typename TFlagment>
-    inline FHktBehaviorRequestHeader CreateBehaviorRequest(int64 SubjectId, int64 SyncGroupId, const TFlagment& FlagmentPayload)
+    static inline FHktBehaviorRequestHeader CreateBehaviorRequest(int64 SubjectId, int64 SyncGroupId, const TFlagment& FlagmentPayload)
     {
         FHktBehaviorRequestHeader Header;
         Header.SubjectId = SubjectId;
         Header.SyncGroupId = SyncGroupId;
         Header.FlagmentTypeId = GetBehaviorTypeId<TFlagment>();
         Header.FlagmentPayload = FHktStructSerializer::SerializeStructToBytes(FlagmentPayload);
+        return Header;
+    }
+
+    static inline FHktBehaviorRequestHeader DestroyBehaviorRequest(int64 SubjectId, int64 SyncGroupId)
+    {
+        FHktBehaviorRequestHeader Header;
+        Header.SubjectId = SubjectId;
+        Header.SyncGroupId = SyncGroupId;
+        Header.FlagmentTypeId = HktBehaviorHeader::DestroyBehaviorTypeId;
         return Header;
     }
 

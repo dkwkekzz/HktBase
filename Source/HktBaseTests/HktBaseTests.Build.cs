@@ -12,13 +12,17 @@ public class HktBaseTests : ModuleRules
             new string[]
             {
                 "Core",
+                "HktBase",
+                "HktCustomNet"
+                // ... add other public dependencies that you statically link with here ...
             }
         );
 
         PrivateDependencyModuleNames.AddRange(
             new string[]
             {
-                "HktCustomNet",
+                "CoreUObject",
+                "Engine",
             }
         );
     }

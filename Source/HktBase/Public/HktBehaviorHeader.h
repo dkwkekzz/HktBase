@@ -2,7 +2,12 @@
 
 #include "CoreMinimal.h"
 #include "HktBehaviorHeader.generated.h"
-  
+
+namespace HktBehaviorHeader
+{
+    constexpr int32 DestroyBehaviorTypeId = -1;
+}
+
 USTRUCT(BlueprintType)
 struct FHktBehaviorRequestHeader
 {
